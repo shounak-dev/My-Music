@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/repeatBtnPA"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            app:icon="@drawable/repeat_icon"
+            android:text="@string/repeat_btn"
+            app:iconGravity="top"
+            android:background="@drawable/ripple_effect"
+            android:textAllCaps="false"
+            android:layout_weight="1"
+            android:textColor="@color/white"
+            app:iconTint="@color/white"
+            style="@style/Widget.AppCompat.Button.Borderless"/>
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/artistBtnPA"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            app:icon="@drawable/artist_icon"
+            android:text="@string/artist_btn"
+            app:iconGravity="top"
+            android:background="@drawable/ripple_effect"
+            android:textAllCaps="false"
+            android:layout_weight="1"
+            android:textColor="@color/white"
+            app:iconTint="@color/white"
+            style="@style/Widget.AppCompat.Button.Borderless"/>
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/equalizerBtnPA"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            app:icon="@drawable/equalizer_icon"
+            android:text="@string/equalizer_btn"
+            app:iconGravity="top"
+            android:background="@drawable/ripple_effect"
+            android:textAllCaps="false"
+            android:layout_weight="1"
+            android:textColor="@color/white"
+            app:iconTint="@color/white"
+            style="@style/Widget.AppCompat.Button.Borderless"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/shareBtnPA"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            app:icon="@drawable/share_icon"
+            android:text="@string/share_btn"
+            app:iconGravity="top"
+            android:background="@drawable/ripple_effect"
+            android:textAllCaps="false"
+            android:layout_weight="1"
+            android:textColor="@color/white"
+            app:iconTint="@color/white"
+            style="@style/Widget.AppCompat.Button.Borderless"/>
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/deleteBtnPA"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            app:icon="@drawable/delete_icon"
+            android:text="@string/delete_btn"
+            app:iconGravity="top"
+            android:background="@drawable/ripple_effect"
+            android:textAllCaps="false"
+            android:layout_weight="1"
+            android:textColor="@color/white"
+            app:iconTint="@color/white"
+            style="@style/Widget.AppCompat.Button.Borderless"/>
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/detailsBtnPA"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            app:icon="@drawable/about_icon"
+            android:text="@string/details_btn"
+            app:iconGravity="top"
+            android:background="@drawable/ripple_effect"
+            android:textAllCaps="false"
+            android:layout_weight="1"
+            android:textColor="@color/white"
+            app:iconTint="@color/white"
+            style="@style/Widget.AppCompat.Button.Borderless"/>
+
+    </LinearLayout>
+
+</LinearLayout>

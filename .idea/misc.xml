@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DesignSurface">
+    <option name="filePathToZoomLevelMap">
+      <map>
+        <entry key="..\:/Users/SHOUNAK/AndroidStudioProjects/Music_player/app/src/main/res/drawable/add_icon.xml" value="0.19583333333333333" />
+        <entry key="..\:/Users/SHOUNAK/AndroidStudioProjects/Music_player/app/src/main/res/drawable/circle_icon.xml" value="0.19583333333333333" />
+        <entry key="..\:/Users/SHOUNAK/AndroidStudioProjects/Music_player/app/src/main/res/drawable/custom_search_view.xml" value="0.19583333333333333" />
+        <entry key="..\:/Users/SHOUNAK/AndroidStudioProjects/Music_player/app/src/main/res/drawable/favourite_empty_icon.xml" value="0.124" />
+        <entry key="..\:/Users/SHOUNAK/AndroidStudioProjects/Music_player/app/src/main/res/drawable/favourite_icon.xml" value="0.1953125" />
+        <entry key="..\:/Users/SHOUNAK/AndroidStudioProjects/Music_player/app/src/main/res/drawable/feedback_icon.xml" value="0.19583333333333333" />
+        <entry key="..\:/Users/SHOUNAK/AndroidStudioProjects/Music_player/app/src/main/res/drawable/gradient_black.xml" value="0.19583333333333333" />
+        <entry key="..\:/Users/SHOUNAK/AndroidStudioProjects/Music_player/app/src/main/res/drawable/gradient_blue.xml" value="0.19583333333333333" />
+        <entry key="..\:/Users/SHOUNAK/AndroidStudioProjects/Music_player/app/src/main/res/drawable/gradient_green.xml" value="0.19583333333333333" />
+        <entry key="..\:/Users/SHOUNAK/AndroidStudioProjects/Music_player/app/src/main/res/drawable/gradient_pink.xml" value="0.19583333333333333" />
+        <entry key="..\:/Users/SHOUNAK/AndroidStudioProjects/Music_player/app/src/main/res/drawable/gradient_purple.xml" value="0.19583333333333333" />
+        <entry key="..\:/Users/SHOUNAK/AndroidStudioProjects/Music_player/app/src/main/res/drawable/ic_launcher_background.xml" value="0.1953125" />
+        <entry key="..\:/Users/SHOUNAK/AndroidStudioProjects/Music_player/app/src/main/res/drawable/next_icon.xml" value="0.1953125" />
+        <entry key="..\:/Users/SHOUNAK/AndroidStudioProjects/Music_player/app/src/main/res/drawable/pause_icon.xml" value="0.1953125" />
+        <entry key="..\:/Users/SHOUNAK/AndroidStudioProjects/Music_player/app/src/main/res/drawable/play_icon.xml" value="0.1953125" />
+        <entry key="..\:/Users/SHOUNAK/AndroidStudioProjects/Music_player/app/src/main/res/drawable/playlist_icon.xml" value="0.1953125" />
+        <entry key="..\:/Users/SHOUNAK/AndroidStudioProjects/Music_player/app/src/main/res/drawable/previous_icon.xml" value="0.1953125" />
+        <entry key="..\:/Users/SHOUNAK/AndroidStudioProjects/Music_player/app/src/main/res/drawable/remove_icon.xml" value="0.19583333333333333" />
+        <entry key="..\:/Users/SHOUNAK/AndroidStudioProjects/Music_player/app/src/main/res/drawable/ripple_effect.xml" value="0.19583333333333333" />
+        <entry key="..\:/Users/SHOUNAK/AndroidStudioProjects/Music_player/app/src/main/res/drawable/scroll_bar_icon.xml" value="0.19583333333333333" />
+        <entry key="..\:/Users/SHOUNAK/AndroidStudioProjects/Music_player/app/src/main/res/drawable/search_icon.xml" value="0.19583333333333333" />
+        <entry key="..\:/Users/SHOUNAK/AndroidStudioProjects/Music_player/app/src/main/res/drawable/share_icon.xml" value="0.19583333333333333" />
+        <entry key="..\:/Users/SHOUNAK/AndroidStudioProjects/Music_player/app/src/main/res/drawable/shuffle_icon.xml" value="0.1953125" />
+        <entry key="..\:/Users/SHOUNAK/AndroidStudioProjects/Music_player/app/src/main/res/drawable/splash_screen.xml" value="0.1953125" />
+        <entry key="..\:/Users/SHOUNAK/AndroidStudioProjects/Music_player/app/src/main/res/drawable/timer_icon.xml" value="0.19583333333333333" />
+        <entry key="..\:/Users/SHOUNAK/AndroidStudioProjects/Music_player/app/src/main/res/layout/activity_about.xml" value="0.1796875" />
+        <entry key="..\:/Users/SHOUNAK/AndroidStudioProjects/Music_player/app/src/main/res/layout/activity_favourite.xml" value="0.25" />
+        <entry key="..\:/Users/SHOUNAK/AndroidStudioProjects/Music_player/app/src/main/res/layout/activity_feedback.xml" value="0.1796875" />
+        <entry key="..\:/Users/SHOUNAK/AndroidStudioProjects/Music_player/app/src/main/res/layout/activity_main.xml" value="0.25" />
+        <entry key="..\:/Users/SHOUNAK/AndroidStudioProjects/Music_player/app/src/main/res/layout/activity_player.xml" value="0.33" />
+        <entry key="..\:/Users/SHOUNAK/AndroidStudioProjects/Music_player/app/src/main/res/layout/activity_playlist.xml" value="0.25" />
+        <entry key="..\:/Users/SHOUNAK/AndroidStudioProjects/Music_player/app/src/main/res/layout/activity_playlist_details.xml" value="0.1796875" />
+        <entry key="..\:/Users/SHOUNAK/AndroidStudioProjects/Music_player/app/src/main/res/layout/activity_selection.xml" value="0.1796875" />
+        <entry key="..\:/Users/SHOUNAK/AndroidStudioProjects/Music_player/app/src/main/res/layout/activity_settings.xml" value="0.33" />
+        <entry key="..\:/Users/SHOUNAK/AndroidStudioProjects/Music_player/app/src/main/res/layout/add_playlist_dialog.xml" value="0.11730072463768115" />
+        <entry key="..\:/Users/SHOUNAK/AndroidStudioProjects/Music_player/app/src/main/res/layout/artist_view.xml" value="0.11730072463768115" />
+        <entry key="..\:/Users/SHOUNAK/AndroidStudioProjects/Music_player/app/src/main/res/layout/bottom_sheet_dialog.xml" value="0.12" />
+        <entry key="..\:/Users/SHOUNAK/AndroidStudioProjects/Music_player/app/src/main/res/layout/details_view.xml" value="0.11730072463768115" />
+        <entry key="..\:/Users/SHOUNAK/AndroidStudioProjects/Music_player/app/src/main/res/layout/favourite_view.xml" value="0.75" />
+        <entry key="..\:/Users/SHOUNAK/AndroidStudioProjects/Music_player/app/src/main/res/layout/fragment_now_playing.xml" value="0.11730072463768115" />
+        <entry key="..\:/Users/SHOUNAK/AndroidStudioProjects/Music_player/app/src/main/res/layout/more_features.xml" value="0.25" />
+        <entry key="..\:/Users/SHOUNAK/AndroidStudioProjects/Music_player/app/src/main/res/layout/music_view.xml" value="0.33" />
+        <entry key="..\:/Users/SHOUNAK/AndroidStudioProjects/Music_player/app/src/main/res/layout/nav_header.xml" value="0.25" />
+        <entry key="..\:/Users/SHOUNAK/AndroidStudioProjects/Music_player/app/src/main/res/layout/playlist_view.xml" value="0.22" />
+        <entry key="..\:/Users/SHOUNAK/AndroidStudioProjects/Music_player/app/src/main/res/menu/nav_menu.xml" value="0.17916666666666667" />
+        <entry key="..\:/Users/SHOUNAK/AndroidStudioProjects/Music_player/app/src/main/res/menu/player_menu.xml" value="0.1796875" />
+        <entry key="..\:/Users/SHOUNAK/AndroidStudioProjects/Music_player/app/src/main/res/menu/search_view_menu.xml" value="0.1796875" />
+        <entry key="app/src/main/res/layout/details_view.xml" value="0.18802083333333333" />
+      </map>
+    </option>
+  </component>
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="Android Studio default JDK" project-jdk-type="JavaSDK">
+    <output url="file://$PROJECT_DIR$/build/classes" />
+  </component>
+  <component name="ProjectType">
+    <option name="id" value="Android" />
+  </component>
+</project>
