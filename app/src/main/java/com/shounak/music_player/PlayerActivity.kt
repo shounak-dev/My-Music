@@ -104,10 +104,10 @@ class PlayerActivity : AppCompatActivity(), ServiceConnection, MediaPlayer.OnCom
             bindingMF.repeatBtnPA.setOnClickListener {
                 if(!repeat){
                     repeat = true
-                    bindingMF.repeatBtnPA.setBackgroundColor(R.color.yellowt)
+                    bindingMF.repeatBtnPA.setBackgroundColor(R.color.purple_200)
                 }else{
                     repeat = false
-                    bindingMF.repeatBtnPA.setBackgroundColor(R.color.timerf)
+                    bindingMF.repeatBtnPA.setBackgroundColor(R.color.teal_200)
                 }
             }
             bindingMF.equalizerBtnPA.setOnClickListener {
@@ -133,6 +133,7 @@ class PlayerActivity : AppCompatActivity(), ServiceConnection, MediaPlayer.OnCom
                 val bindingIF = DetailsViewBinding.bind(customDialogIF)
                 val dialogIF = MaterialAlertDialogBuilder(this).setView(customDialogIF)
                     .setCancelable(false)
+                    .setBackground(ColorDrawable(0x80000000.toInt()))
                     .setPositiveButton("Ok"){self, _ ->
                         self.dismiss()
                     }
@@ -143,7 +144,8 @@ class PlayerActivity : AppCompatActivity(), ServiceConnection, MediaPlayer.OnCom
                     .bold { append("\n\nLocation: ") }.append(musicListPA[songPosition].path)
 
                 bindingIF.detailTV.text = infoText
-                dialogIF.getButton(AlertDialog.BUTTON_POSITIVE).setBackgroundColor(MaterialColors.getColor(baseContext, R.color.white, Color.RED))
+                dialogIF.getButton(AlertDialog.BUTTON_POSITIVE).setTextColor(MaterialColors.getColor(baseContext, R.color.white, Color.WHITE))
+                dialogIF.getButton(AlertDialog.BUTTON_POSITIVE).setBackgroundColor(MaterialColors.getColor(baseContext, R.color.black_T, Color.BLACK))
             }
             bindingMF.deleteBtnPA.setOnClickListener {
                 dialog.dismiss()
@@ -155,6 +157,7 @@ class PlayerActivity : AppCompatActivity(), ServiceConnection, MediaPlayer.OnCom
                 val bindingFF = DetailsViewBinding.bind(customDialogFF)
                 val dialogFF = MaterialAlertDialogBuilder(this).setView(customDialogFF)
                     .setCancelable(false)
+                    .setBackground(ColorDrawable(0x80000000.toInt()))
                     .setPositiveButton("Ok"){self, _ ->
                         self.dismiss()
                     }
@@ -162,7 +165,8 @@ class PlayerActivity : AppCompatActivity(), ServiceConnection, MediaPlayer.OnCom
                 dialogFF.show()
                 val artistText = SpannableStringBuilder().bold { append("DETAILS\n\nArtist: ") }.append(musicListPA[songPosition].artist)
                 bindingFF.detailTV.text = artistText
-                dialogFF.getButton(AlertDialog.BUTTON_POSITIVE).setBackgroundColor(MaterialColors.getColor(baseContext, R.color.white, Color.RED))
+                dialogFF.getButton(AlertDialog.BUTTON_POSITIVE).setTextColor(MaterialColors.getColor(baseContext, R.color.white, Color.WHITE))
+                dialogFF.getButton(AlertDialog.BUTTON_POSITIVE).setBackgroundColor(MaterialColors.getColor(baseContext, R.color.black_T, Color.BLACK))
             }
         }
         binding.timerBtnPA.setOnClickListener {
@@ -240,15 +244,6 @@ class PlayerActivity : AppCompatActivity(), ServiceConnection, MediaPlayer.OnCom
                 musicListPA = ArrayList()
                 musicListPA.addAll(FavouriteActivity.favouriteSongs)
                 setLayout()
-            }
-            "NowPlaying"->{
-                setLayout()
-                binding.tvSeekBarStart.text = formatDuration(musicService!!.mediaPlayer!!.currentPosition.toLong())
-                binding.tvSeekBarEnd.text = formatDuration(musicService!!.mediaPlayer!!.duration.toLong())
-                binding.seekBarPA.progress = musicService!!.mediaPlayer!!.currentPosition
-                binding.seekBarPA.max = musicService!!.mediaPlayer!!.duration
-                if(isPlaying) binding.playPauseBtnPA.setIconResource(R.drawable.pause_icon)
-                else binding.playPauseBtnPA.setIconResource(R.drawable.play_icon)
             }
             "MusicAdapterSearch" -> {
                 val intent = Intent(this, MusicService::class.java)

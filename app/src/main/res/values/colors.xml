@@ -13,9 +13,6 @@
     <color name="cool_green">#64DD17</color>
     <color name="cool_pink">#F50057</color>
     <color name="yellow">#FFD600</color>
-
-    <color name="yellowt">#80D600</color>
-    <color name="timerf">#80018786</color>
-
+    <color name="black_T">#80000000</color>
 
 </resources>
