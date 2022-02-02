@@ -14,5 +14,6 @@
     <color name="cool_pink">#F50057</color>
     <color name="yellow">#FFD600</color>
     <color name="black_T">#80000000</color>
+    <color name="gray">#808080</color>
 
 </resources>

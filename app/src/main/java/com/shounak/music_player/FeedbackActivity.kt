@@ -24,7 +24,7 @@ class FeedbackActivity : AppCompatActivity() {
             val feedbackMsg = binding.feedbackMsgFA.text.toString() + "\n" + binding.emailFA.text.toString()
             val subject = binding.topicFA.text.toString()
             val userName = "shounakdas30@gmail.com"
-            val pass = "kishore@2001"
+            val pass = "123456"
             val cm = this.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
             if(feedbackMsg.isNotEmpty() && subject.isNotEmpty() && (cm.activeNetworkInfo?.isConnectedOrConnecting == true)){
                 Thread{
