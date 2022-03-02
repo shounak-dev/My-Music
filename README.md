@@ -6,7 +6,6 @@ An android application of a simple Music Player
 <br>
 ![Minimum API Level](https://img.shields.io/badge/Min%20API%20Level-23-green)
 ![Maximum API Level](https://img.shields.io/badge/Max%20API%20Level-31-orange)
-![GitHub repo size](https://img.shields.io/github/repo-size/ByteMonk-GCECT/GCECT-APP)
 [![License](https://img.shields.io/badge/license-MIT-%2397ca00.svg)](https://github.com/sitamadex11/CovidHelp/blob/develop/LICENSE)
 [![Open Source Love svg1](https://badges.frapsoft.com/os/v1/open-source.svg?v=103)](https://github.com/ellerbrock/open-source-badges/) 
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](http://makeapullrequest.com) 
