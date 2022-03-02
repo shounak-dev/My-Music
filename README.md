@@ -85,5 +85,4 @@ SOFTWARE.
 <br>
 <br>
 <h2 align="center">❤ Thank You Everyone ❤</h2>
-
 <br>
