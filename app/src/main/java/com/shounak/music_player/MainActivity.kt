@@ -3,6 +3,7 @@ package com.shounak.music_player
 import android.annotation.SuppressLint
 import android.content.Intent
 import android.content.pm.PackageManager
+import android.content.res.Configuration
 import android.graphics.Color
 import android.net.Uri
 import android.os.Build
@@ -10,12 +11,12 @@ import android.os.Bundle
 import android.provider.MediaStore
 import android.view.Menu
 import android.view.MenuItem
-import androidx.appcompat.widget.SearchView
 import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.SearchView
 import androidx.core.app.ActivityCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.color.MaterialColors
@@ -34,6 +35,7 @@ class MainActivity : AppCompatActivity() {
     companion object {
         lateinit var MusicListMA: ArrayList<Music>
         lateinit var musicListSearch: ArrayList<Music>
+        var themeIndex: Int = 0
         var search: Boolean = false
         var sortOrder: Int = 0
         val sortingList = arrayOf(MediaStore.Audio.Media.DATE_ADDED + " DESC", MediaStore.Audio.Media.TITLE,
@@ -45,6 +47,8 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setTheme(R.style.MyMusicThemeNav)
+        val themeEditor = getSharedPreferences("THEMES", MODE_PRIVATE)
+        themeIndex = themeEditor.getInt("themeIndex", 0)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
         //for nav drawer
@@ -52,8 +56,10 @@ class MainActivity : AppCompatActivity() {
         binding.root.addDrawerListener(toggle)
         toggle.syncState()
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        if(themeIndex == 4 &&  resources.configuration.uiMode and Configuration.UI_MODE_NIGHT_MASK == Configuration.UI_MODE_NIGHT_NO)
+            Toast.makeText(this, "Black Theme Works Best in Dark Mode!!", Toast.LENGTH_LONG).show()
 
-        if (requestRuntimePermission()) {
+        if(requestRuntimePermission()){
             initializeLayout()
             //for retrieving favourites data using shared preferences
             FavouriteActivity.favouriteSongs = ArrayList()
@@ -66,7 +72,7 @@ class MainActivity : AppCompatActivity() {
             }
             PlaylistActivity.musicPlaylist = MusicPlaylist()
             val jsonStringPlaylist = editor.getString("MusicPlaylist", null)
-            if(jsonString != null){
+            if(jsonStringPlaylist != null){
                 val dataPlaylist: MusicPlaylist = GsonBuilder().create().fromJson(jsonStringPlaylist, MusicPlaylist::class.java)
                 PlaylistActivity.musicPlaylist = dataPlaylist
             }
@@ -161,6 +167,14 @@ class MainActivity : AppCompatActivity() {
         binding.musicRV.layoutManager = LinearLayoutManager(this@MainActivity)
         musicAdapter = MusicAdapter(this@MainActivity, MusicListMA)
         binding.musicRV.adapter = musicAdapter
+
+        //for refreshing layout on swipe from top
+//        binding.refreshLayout.setOnRefreshListener {
+//            MusicListMA = getAllAudio()
+//            musicAdapter.updateMusicList(MusicListMA)
+//
+//            binding.refreshLayout.isRefreshing = false
+//        }
     }
 
     @SuppressLint("Recycle", "Range")
@@ -250,15 +264,16 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         menuInflater.inflate(R.menu.search_view_menu, menu)
+        //for setting gradient
         val searchView = menu?.findItem(R.id.searchView)?.actionView as SearchView
-        searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+        searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener{
             override fun onQueryTextSubmit(query: String?): Boolean = true
             override fun onQueryTextChange(newText: String?): Boolean {
                 musicListSearch = ArrayList()
-                if (newText != null) {
+                if(newText != null){
                     val userInput = newText.lowercase()
                     for (song in MusicListMA)
-                        if (song.title.lowercase().contains(userInput))
+                        if(song.title.lowercase().contains(userInput))
                             musicListSearch.add(song)
                     search = true
                     musicAdapter.updateMusicList(searchList = musicListSearch)

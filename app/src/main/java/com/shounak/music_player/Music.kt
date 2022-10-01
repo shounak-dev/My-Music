@@ -3,6 +3,7 @@ package com.shounak.music_player
 import android.annotation.SuppressLint
 import android.app.AlertDialog
 import android.content.Context
+import android.graphics.Bitmap
 import android.graphics.Color
 import android.media.MediaMetadataRetriever
 import com.google.android.material.color.MaterialColors
@@ -91,4 +92,10 @@ fun setDialogBtnBackground(context: Context, dialog: androidx.appcompat.app.Aler
     dialog.getButton(AlertDialog.BUTTON_NEGATIVE)?.setBackgroundColor(
         MaterialColors.getColor(context, R.color.purple_500, Color.RED)
     )
+}
+fun getMainColor(img: Bitmap): Int {
+    val newImg = Bitmap.createScaledBitmap(img, 1,1 , true)
+    val color = newImg.getPixel(0, 0)
+    newImg.recycle()
+    return color
 }

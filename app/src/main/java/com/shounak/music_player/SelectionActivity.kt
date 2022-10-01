@@ -3,6 +3,7 @@ package com.shounak.music_player
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.SearchView
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.shounak.music_player.databinding.ActivitySelectionBinding
 
@@ -15,21 +16,21 @@ class SelectionActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivitySelectionBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        binding.selectionRV.setItemViewCacheSize(10)
+        binding.selectionRV.setItemViewCacheSize(30)
         binding.selectionRV.setHasFixedSize(true)
         binding.selectionRV.layoutManager = LinearLayoutManager(this)
         adapter = MusicAdapter(this, MainActivity.MusicListMA, selectionActivity = true)
         binding.selectionRV.adapter = adapter
         binding.backBtnSA.setOnClickListener { finish() }
-        //for search view
-        binding.searchViewSA.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+        //for search View
+        binding.searchViewSA.setOnQueryTextListener(object : SearchView.OnQueryTextListener{
             override fun onQueryTextSubmit(query: String?): Boolean = true
             override fun onQueryTextChange(newText: String?): Boolean {
                 MainActivity.musicListSearch = ArrayList()
-                if (newText != null) {
+                if(newText != null){
                     val userInput = newText.lowercase()
                     for (song in MainActivity.MusicListMA)
-                        if (song.title.lowercase().contains(userInput))
+                        if(song.title.lowercase().contains(userInput))
                             MainActivity.musicListSearch.add(song)
                     MainActivity.search = true
                     adapter.updateMusicList(searchList = MainActivity.musicListSearch)
@@ -37,6 +38,14 @@ class SelectionActivity : AppCompatActivity() {
                 return true
             }
         })
-        binding.backBtnSA.setOnClickListener { finish() }
+    }
+
+    override fun onResume() {
+        super.onResume()
+        //for black theme checking
+        if(MainActivity.themeIndex == 4)
+        {
+            binding.searchViewSA.backgroundTintList = ContextCompat.getColorStateList(this, R.color.white)
+        }
     }
 }
