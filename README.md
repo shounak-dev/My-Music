@@ -15,12 +15,14 @@ An android application of a simple Music Player
 Some features that are included in the app are:
 <ul>
   <li>A good UI/UX to make every page more attractive and informative</li>
-  <li>repeat song</li>
-  <li>equalizer</li>
+  <li>Repeat song</li>
+  <li>Equalizer</li>
   <li>Feedback</li>
   <li>Timer</li>
-  <li>share song</li>
-  <li>control play-pause,previous-next and exit buttons from notification</li>
+  <li>Share song</li>
+  <li>Delete song</li>
+  <li>Rename song</li>
+  <li>Control play-pause,previous-next and exit buttons from notification</li>
 </ul>
 
 ## Functionality & Concepts used 👨‍💻 :
