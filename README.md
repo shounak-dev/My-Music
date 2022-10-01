@@ -17,6 +17,7 @@ Some features that are included in the app are:
   <li>A good UI/UX to make every page more attractive and informative</li>
   <li>repeat song</li>
   <li>equalizer</li>
+  <li>Feedback</li>
   <li>share and delete song</li>
   <li>control play-pause,previous-next and exit buttons from notification</li>
 </ul>
