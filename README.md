@@ -19,7 +19,8 @@ Some features that are included in the app are:
   <li>equalizer</li>
   <li>Feedback</li>
   <li>Timer</li>
-  <li>share song</li>
+  <li>Share song</li>
+  <li>Delete song</li>
   <li>control play-pause,previous-next and exit buttons from notification</li>
 </ul>
 
