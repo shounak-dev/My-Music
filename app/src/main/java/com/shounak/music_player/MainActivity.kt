@@ -248,7 +248,7 @@ class MainActivity : AppCompatActivity() {
         //for storing favourites data using shared preferences
         val editor = getSharedPreferences("FAVOURITES", MODE_PRIVATE).edit()
         val jsonString = GsonBuilder().create().toJson(FavouriteActivity.favouriteSongs)
-        editor.putString("MusicPlaylist", jsonString)
+        editor.putString("FavouriteSongs", jsonString)
         val jsonStringPlaylist = GsonBuilder().create().toJson(PlaylistActivity.musicPlaylist)
         editor.putString("MusicPlaylist", jsonStringPlaylist)
         editor.apply()
