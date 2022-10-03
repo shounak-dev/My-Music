@@ -10,7 +10,7 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal">
 
-        <com.google.android.material.button.MaterialButton
+        <ImageButton
             android:id="@+id/repeatBtnPA"
             android:layout_width="0dp"
             android:layout_height="match_parent"

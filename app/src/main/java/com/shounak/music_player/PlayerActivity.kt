@@ -104,10 +104,10 @@ class PlayerActivity : AppCompatActivity(), ServiceConnection, MediaPlayer.OnCom
             bindingMF.repeatBtnPA.setOnClickListener {
                 if(!repeat){
                     repeat = true
-                    bindingMF.repeatBtnPA.setBackgroundColor(R.color.purple_200)
+                    bindingMF.repeatBtnPA.setColorFilter(ContextCompat.getColor(this, R.color.purple_500))
                 }else{
                     repeat = false
-                    bindingMF.repeatBtnPA.setBackgroundColor(R.color.teal_200)
+                    bindingMF.repeatBtnPA.setColorFilter(ContextCompat.getColor(this, R.color.cool_pink))
                 }
             }
             bindingMF.equalizerBtnPA.setOnClickListener {
