@@ -180,7 +180,7 @@ class PlayerActivity : AppCompatActivity(), ServiceConnection, MediaPlayer.OnCom
                         min15 = false
                         min30 = false
                         min60 = false
-                        binding.timerBtnPA.setColorFilter(ContextCompat.getColor(this, R.color.cool_pink))
+                        binding.timerBtnPA.setColorFilter(ContextCompat.getColor(this, R.color.white))
                     }
                     .setNegativeButton("No"){dialog, _ ->
                         dialog.dismiss()
@@ -305,7 +305,7 @@ class PlayerActivity : AppCompatActivity(), ServiceConnection, MediaPlayer.OnCom
         dialog.show()
         dialog.findViewById<LinearLayout>(R.id.min_15)?.setOnClickListener {
             Toast.makeText(baseContext,  "Music will stop after 15 minutes", Toast.LENGTH_SHORT).show()
-            binding.timerBtnPA.setColorFilter(ContextCompat.getColor(this, R.color.purple_500))
+            binding.timerBtnPA.setColorFilter(ContextCompat.getColor(this, R.color.cool_pink))
             min15 = true
             Thread{Thread.sleep((15 * 60000).toLong())
                 if(min15) exitApplication()}.start()
@@ -313,7 +313,7 @@ class PlayerActivity : AppCompatActivity(), ServiceConnection, MediaPlayer.OnCom
         }
         dialog.findViewById<LinearLayout>(R.id.min_30)?.setOnClickListener {
             Toast.makeText(baseContext,  "Music will stop after 30 minutes", Toast.LENGTH_SHORT).show()
-            binding.timerBtnPA.setColorFilter(ContextCompat.getColor(this, R.color.purple_500))
+            binding.timerBtnPA.setColorFilter(ContextCompat.getColor(this, R.color.cool_pink))
             min30 = true
             Thread{Thread.sleep((30 * 60000).toLong())
                 if(min30) exitApplication()}.start()
@@ -321,7 +321,7 @@ class PlayerActivity : AppCompatActivity(), ServiceConnection, MediaPlayer.OnCom
         }
         dialog.findViewById<LinearLayout>(R.id.min_60)?.setOnClickListener {
             Toast.makeText(baseContext,  "Music will stop after 60 minutes", Toast.LENGTH_SHORT).show()
-            binding.timerBtnPA.setColorFilter(ContextCompat.getColor(this, R.color.purple_500))
+            binding.timerBtnPA.setColorFilter(ContextCompat.getColor(this, R.color.cool_pink))
             min60 = true
             Thread{Thread.sleep((60 * 60000).toLong())
                 if(min60) exitApplication()}.start()
