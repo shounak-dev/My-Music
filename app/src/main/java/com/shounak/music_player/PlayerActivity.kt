@@ -188,6 +188,8 @@ class PlayerActivity : AppCompatActivity(), ServiceConnection, MediaPlayer.OnCom
                 val customDialog = builder.create()
                 customDialog.show()
                 setDialogBtnBackground(this, customDialog)
+                customDialog.getButton(AlertDialog.BUTTON_POSITIVE).setTextColor(MaterialColors.getColor(baseContext, R.color.white, Color.WHITE))
+                customDialog.getButton(AlertDialog.BUTTON_POSITIVE).setBackgroundColor(MaterialColors.getColor(baseContext, R.color.black_T, Color.BLACK))
             }
         }
         binding.favouriteBtnPA.setOnClickListener {
