@@ -50,6 +50,8 @@ class MusicAdapter(private val context: Context, private var musicList: ArrayLis
                 holder.root.setOnClickListener {
                 when{
                     MainActivity.search -> sendIntent(ref = "MusicAdapterSearch", pos = position)
+                    musicList[position].id == PlayerActivity.nowPlayingId ->
+                        sendIntent(ref = "NowPlaying", pos = PlayerActivity.songPosition)
                     else -> sendIntent(ref = "MusicAdapter", pos = position)
                 } }
             }
