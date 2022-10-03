@@ -90,8 +90,8 @@
             android:src="@drawable/timer_icon"
             android:background="?attr/selectableItemBackground"
             android:contentDescription="@string/timer_btn"
-            app:iconTint="@color/white"
-            tools:ignore="NestedWeights" />
+            tools:ignore="NestedWeights"
+            app:tint="@color/white" />
 
         <ImageButton
             android:id="@+id/favouriteBtnPA"
