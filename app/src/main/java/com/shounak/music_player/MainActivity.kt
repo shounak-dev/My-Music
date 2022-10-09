@@ -169,12 +169,7 @@ class MainActivity : AppCompatActivity() {
         binding.musicRV.adapter = musicAdapter
 
         //for refreshing layout on swipe from top
-//        binding.refreshLayout.setOnRefreshListener {
-//            MusicListMA = getAllAudio()
-//            musicAdapter.updateMusicList(MusicListMA)
-//
-//            binding.refreshLayout.isRefreshing = false
-//        }
+
     }
 
     @SuppressLint("Recycle", "Range")
