@@ -100,14 +100,18 @@ class PlayerActivity : AppCompatActivity(), ServiceConnection, MediaPlayer.OnCom
                 .setBackground(ColorDrawable(0x80000000.toInt()))
                 .create()
             dialog.show()
-
+            if(repeat)
+            {
+                bindingMF.repeatBtnPA.setBackgroundColor(ContextCompat.getColor(this,R.color.purple_500))
+            }
             bindingMF.repeatBtnPA.setOnClickListener {
                 if(!repeat){
                     repeat = true
-                    bindingMF.repeatBtnPA.setColorFilter(ContextCompat.getColor(this, R.color.purple_500))
-                }else{
+                    bindingMF.repeatBtnPA.setBackgroundColor(ContextCompat.getColor(this,R.color.purple_500))
+                }
+                else{
                     repeat = false
-                    bindingMF.repeatBtnPA.setColorFilter(ContextCompat.getColor(this, R.color.cool_pink))
+                    bindingMF.repeatBtnPA.setBackgroundColor(Color.TRANSPARENT)
                 }
             }
             bindingMF.equalizerBtnPA.setOnClickListener {
@@ -117,7 +121,8 @@ class PlayerActivity : AppCompatActivity(), ServiceConnection, MediaPlayer.OnCom
                     eqIntent.putExtra(AudioEffect.EXTRA_PACKAGE_NAME, baseContext.packageName)
                     eqIntent.putExtra(AudioEffect.EXTRA_CONTENT_TYPE, AudioEffect.CONTENT_TYPE_MUSIC)
                     startActivityForResult(eqIntent, 13)
-                }catch (e: Exception){Toast.makeText(this,  "Equalizer Feature not Supported!!", Toast.LENGTH_SHORT).show()}
+                }
+                catch (e: Exception){ Toast.makeText(this,  "Equalizer Feature not Supported!!", Toast.LENGTH_SHORT).show() }
             }
             bindingMF.shareBtnPA.setOnClickListener {
                 dialog.dismiss()
