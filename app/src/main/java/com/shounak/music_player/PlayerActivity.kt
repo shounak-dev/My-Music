@@ -102,7 +102,7 @@ class PlayerActivity : AppCompatActivity(), ServiceConnection, MediaPlayer.OnCom
             dialog.show()
             if(repeat)
             {
-                bindingMF.repeatBtnPA.setBackgroundColor(ContextCompat.getColor(this,R.color.purple_500))
+                bindingMF.repeatBtnPA.setBackgroundColor(ContextCompat.getColor(this,R.color.cool_pink))
             }
             bindingMF.repeatBtnPA.setOnClickListener {
                 if(!repeat){
