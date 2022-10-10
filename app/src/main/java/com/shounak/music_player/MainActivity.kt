@@ -60,7 +60,7 @@ class MainActivity : AppCompatActivity() {
             Toast.makeText(this, "Black Theme Works Best in Dark Mode!!", Toast.LENGTH_LONG).show()
 
         if(requestRuntimePermission()){
-            initializeLayout()
+            loadMusics()
             //for retrieving favourites data using shared preferences
             FavouriteActivity.favouriteSongs = ArrayList()
             val editor = getSharedPreferences("FAVOURITES", MODE_PRIVATE)
@@ -109,6 +109,7 @@ class MainActivity : AppCompatActivity() {
             }
             true
         }
+        binding.musicSwipeRefresh.setOnRefreshListener { loadMusics() }
     }
 
     //For requesting permission
@@ -139,7 +140,7 @@ class MainActivity : AppCompatActivity() {
         if (requestCode == 13) {
             if (grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                 Toast.makeText(this, "Permission Granted", Toast.LENGTH_SHORT).show()
-                initializeLayout()
+                loadMusics()
             } else
                 ActivityCompat.requestPermissions(
                     this,
@@ -157,7 +158,7 @@ class MainActivity : AppCompatActivity() {
 
     @RequiresApi(Build.VERSION_CODES.R)
     @SuppressLint("SetTextI18n")
-    private fun initializeLayout() {
+    private fun loadMusics() {
         search = false
         val sortEditor = getSharedPreferences("SORTING", MODE_PRIVATE)
         sortOrder = sortEditor.getInt("sortOrder", 0)
@@ -167,9 +168,7 @@ class MainActivity : AppCompatActivity() {
         binding.musicRV.layoutManager = LinearLayoutManager(this@MainActivity)
         musicAdapter = MusicAdapter(this@MainActivity, MusicListMA)
         binding.musicRV.adapter = musicAdapter
-
-        //for refreshing layout on swipe from top
-
+        binding.musicSwipeRefresh.isRefreshing = false
     }
 
     @SuppressLint("Recycle", "Range")
