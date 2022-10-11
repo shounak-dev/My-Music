@@ -58,7 +58,7 @@
         android:backgroundTint="@color/black"
         app:icon="@drawable/add_icon"
         app:iconSize="35dp"
-        app:iconTint="@color/white"
+        app:iconTint="@color/cool_pink"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.9"
@@ -66,7 +66,7 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.9"
         app:strokeWidth="2dp"
-        app:strokeColor="@color/white"/>
+        app:strokeColor="@color/cool_pink"/>
 
     <TextView
         android:id="@+id/instructionPA"
