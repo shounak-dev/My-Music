@@ -10,7 +10,7 @@
     <com.google.android.material.textfield.TextInputEditText
         android:id="@+id/topicFA"
         android:layout_width="match_parent"
-        android:textColor="@color/white"
+        android:textColor="@color/black"
         android:layout_margin="16dp"
         android:layout_height="80dp"
         android:background="@color/gray"
@@ -23,7 +23,7 @@
         android:id="@+id/emailFA"
         android:layout_width="match_parent"
         android:layout_height="80dp"
-        android:textColor="@color/white"
+        android:textColor="@color/black"
         android:background="@color/gray"
         android:layout_margin="16dp"
         android:hint="@string/email_feedback"
