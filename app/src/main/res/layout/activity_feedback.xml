@@ -45,7 +45,7 @@
         android:id="@+id/sendFA"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:backgroundTint="@color/black"
+        android:backgroundTint="@android:color/holo_red_dark"
         android:text="@string/send"
         android:layout_gravity="center"
         android:textColor="@color/white"
