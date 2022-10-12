@@ -35,7 +35,7 @@
         android:id="@+id/feedbackMsgFA"
         android:layout_width="match_parent"
         android:layout_height="250dp"
-        android:textColor="@color/white"
+        android:textColor="@color/black"
         android:background="@color/gray"
         android:layout_margin="16dp"
         android:hint="@string/feedback"
