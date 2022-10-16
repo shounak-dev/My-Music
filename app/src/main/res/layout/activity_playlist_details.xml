@@ -132,7 +132,7 @@
             android:drawableLeft="@drawable/remove_icon"
             android:text="@string/remove_all"
             android:textAllCaps="false"
-            android:textColor="?colorOnPrimary"
+            android:textColor="@color/white"
             tools:ignore="RtlHardcoded" />
 
     </LinearLayout>
