@@ -33,6 +33,7 @@ android {
     buildFeatures{
         viewBinding true
     }
+    namespace 'com.shounak.music_player'
 }
 
 dependencies {

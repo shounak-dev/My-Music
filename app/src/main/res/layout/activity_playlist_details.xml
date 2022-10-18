@@ -55,6 +55,7 @@
             android:id="@+id/playlistImgPD"
             android:layout_width="250dp"
             android:layout_height="match_parent"
+            android:padding="10dp"
             android:src="@drawable/music_player_icon_splash_screen"/>
         <TextView
             android:id="@+id/moreInfoPD"
@@ -64,7 +65,7 @@
             android:gravity="center|start"
             android:layout_marginHorizontal="5dp"
             android:textColor="@color/white"
-            android:textSize="16sp" />
+            android:textSize="15sp" />
     </LinearLayout>
 
     <androidx.recyclerview.widget.RecyclerView

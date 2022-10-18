@@ -100,14 +100,18 @@ class PlayerActivity : AppCompatActivity(), ServiceConnection, MediaPlayer.OnCom
                 .setBackground(ColorDrawable(0x80000000.toInt()))
                 .create()
             dialog.show()
-
+            if(repeat)
+            {
+                bindingMF.repeatBtnPA.setBackgroundColor(ContextCompat.getColor(this,R.color.cool_pink))
+            }
             bindingMF.repeatBtnPA.setOnClickListener {
                 if(!repeat){
                     repeat = true
-                    bindingMF.repeatBtnPA.setColorFilter(ContextCompat.getColor(this, R.color.purple_500))
-                }else{
+                    bindingMF.repeatBtnPA.setBackgroundColor(ContextCompat.getColor(this,R.color.cool_pink))
+                }
+                else{
                     repeat = false
-                    bindingMF.repeatBtnPA.setColorFilter(ContextCompat.getColor(this, R.color.cool_pink))
+                    bindingMF.repeatBtnPA.setBackgroundColor(Color.TRANSPARENT)
                 }
             }
             bindingMF.equalizerBtnPA.setOnClickListener {
@@ -117,7 +121,8 @@ class PlayerActivity : AppCompatActivity(), ServiceConnection, MediaPlayer.OnCom
                     eqIntent.putExtra(AudioEffect.EXTRA_PACKAGE_NAME, baseContext.packageName)
                     eqIntent.putExtra(AudioEffect.EXTRA_CONTENT_TYPE, AudioEffect.CONTENT_TYPE_MUSIC)
                     startActivityForResult(eqIntent, 13)
-                }catch (e: Exception){Toast.makeText(this,  "Equalizer Feature not Supported!!", Toast.LENGTH_SHORT).show()}
+                }
+                catch (e: Exception){ Toast.makeText(this,  "Equalizer Feature not Supported!!", Toast.LENGTH_SHORT).show() }
             }
             bindingMF.shareBtnPA.setOnClickListener {
                 dialog.dismiss()
@@ -172,10 +177,12 @@ class PlayerActivity : AppCompatActivity(), ServiceConnection, MediaPlayer.OnCom
         binding.timerBtnPA.setOnClickListener {
             val timer = min15 || min30 || min60
             if(!timer) showBottomSheetDialog()
-            else{
-                val builder = MaterialAlertDialogBuilder(this)
-                builder.setTitle("Stop Timer")
-                    .setMessage("Do you want to stop timer?")
+            else {
+                val customDialogTL = LayoutInflater.from(this).inflate(R.layout.artist_view, binding.root, false)
+                val bindingTL = DetailsViewBinding.bind(customDialogTL)
+                val dialogTL = MaterialAlertDialogBuilder(this).setView(customDialogTL)
+                    .setCancelable(false)
+                    .setBackground(ColorDrawable(0x80000000.toInt()))
                     .setPositiveButton("Yes"){ _, _ ->
                         min15 = false
                         min30 = false
@@ -185,11 +192,14 @@ class PlayerActivity : AppCompatActivity(), ServiceConnection, MediaPlayer.OnCom
                     .setNegativeButton("No"){dialog, _ ->
                         dialog.dismiss()
                     }
-                val customDialog = builder.create()
-                customDialog.show()
-                setDialogBtnBackground(this, customDialog)
-                customDialog.getButton(AlertDialog.BUTTON_POSITIVE).setTextColor(MaterialColors.getColor(baseContext, R.color.white, Color.WHITE))
-                customDialog.getButton(AlertDialog.BUTTON_POSITIVE).setBackgroundColor(MaterialColors.getColor(baseContext, R.color.black_T, Color.BLACK))
+                .create()
+                dialogTL.show()
+                val artistText = "Stop Timer\n\nDo you want to stop timer?"
+                bindingTL.detailTV.text = artistText
+                dialogTL.getButton(AlertDialog.BUTTON_POSITIVE).setTextColor(MaterialColors.getColor(baseContext, R.color.white, Color.WHITE))
+                dialogTL.getButton(AlertDialog.BUTTON_POSITIVE).setBackgroundColor(MaterialColors.getColor(baseContext, R.color.black_T, Color.BLACK))
+                dialogTL.getButton(AlertDialog.BUTTON_NEGATIVE).setTextColor(MaterialColors.getColor(baseContext, R.color.white, Color.WHITE))
+                dialogTL.getButton(AlertDialog.BUTTON_NEGATIVE).setBackgroundColor(MaterialColors.getColor(baseContext, R.color.black_T, Color.BLACK))
             }
         }
         binding.favouriteBtnPA.setOnClickListener {
@@ -239,6 +249,15 @@ class PlayerActivity : AppCompatActivity(), ServiceConnection, MediaPlayer.OnCom
     private fun initializeLayout(){
         songPosition = intent.getIntExtra("index", 0)
         when(intent.getStringExtra("class")){
+            "NowPlaying"->{
+                setLayout()
+                binding.tvSeekBarStart.text = formatDuration(musicService!!.mediaPlayer!!.currentPosition.toLong())
+                binding.tvSeekBarEnd.text = formatDuration(musicService!!.mediaPlayer!!.duration.toLong())
+                binding.seekBarPA.progress = musicService!!.mediaPlayer!!.currentPosition
+                binding.seekBarPA.max = musicService!!.mediaPlayer!!.duration
+                if(isPlaying) binding.playPauseBtnPA.setIconResource(R.drawable.pause_icon)
+                else binding.playPauseBtnPA.setIconResource(R.drawable.play_icon)
+            }
             "FavouriteAdapter" -> initServiceAndPlaylist(FavouriteActivity.favouriteSongs, shuffle = false)
             "MusicAdapterSearch" -> initServiceAndPlaylist(MainActivity.musicListSearch, shuffle = false)
             "MusicAdapter" -> initServiceAndPlaylist(MainActivity.MusicListMA, shuffle = false)
