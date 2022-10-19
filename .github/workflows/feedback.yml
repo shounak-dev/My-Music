@@ -1,0 +1,24 @@
+name: Open issue
+
+# Controls when the workflow will run
+on:
+  repository_dispatch:
+      types: webhook-run
+
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+jobs:
+  open-issue:
+    # The type of runner that the job will run on
+    runs-on: ubuntu-latest
+    
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+      - uses: actions/checkout@v2
+      - uses: JasonEtco/create-an-issue@v2
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          subject: ${{github.event.client_payload.subject}}
+          message: ${{github.event.client_payload.message}}
+          sender: ${{github.event.client_payload.sender}}
+        with:
+          filename: .github/ISSUE_FEEDBACK_TEMPLATE.md
