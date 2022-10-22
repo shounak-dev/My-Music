@@ -6,16 +6,15 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:gravity="center"
-    android:background="@color/black"
     tools:context=".PlayerActivity">
 
     <!--    First Row-->
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="10dp"
         android:orientation="horizontal"
-        android:background="@color/black"
-        android:gravity="center">
+        android:gravity="center"
+        android:layout_weight="1">
 
         <!--    Back Button-->
         <ImageButton
@@ -44,7 +43,8 @@
             android:singleLine="true"
             android:ellipsize="marquee"
             android:marqueeRepeatLimit="marquee_forever"
-            tools:ignore="NestedWeights" />
+            tools:ignore="NestedWeights"
+            android:textStyle="bold"/>
         <ImageButton
             android:id="@+id/moreFeaturesBtnPA"
             android:layout_width="50dp"
@@ -58,30 +58,22 @@
             tools:ignore="RtlSymmetry" />
     </LinearLayout>
 
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="0dp"
-        android:background="@color/black"
-        android:layout_weight="1">
-
         <!--    Current Song Image-->
         <com.google.android.material.imageview.ShapeableImageView
             android:id="@+id/songImgPA"
             android:layout_width="350dp"
             android:layout_height="350dp"
+            android:layout_gravity="center"
             android:padding="5dp"
             android:src="@drawable/music_player_icon_splash_screen"
             app:shapeAppearanceOverlay="@style/curved"
-            android:layout_gravity="center"
             tools:ignore="InefficientWeight" />
-
-    </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/black"
-        android:orientation="horizontal">
+        android:layout_height="10dp"
+        android:orientation="horizontal"
+        android:layout_weight="1">
 
         <ImageButton
             android:id="@+id/timerBtnPA"
@@ -91,7 +83,7 @@
             android:background="?attr/selectableItemBackground"
             android:contentDescription="@string/timer_btn"
             tools:ignore="NestedWeights"
-            app:tint="@color/white" />
+            app:tint="@color/black" />
 
         <ImageButton
             android:id="@+id/favouriteBtnPA"
@@ -101,23 +93,23 @@
             android:background="?attr/selectableItemBackground"
             android:contentDescription="@string/favourites_btn"
             android:src="@drawable/favourite_empty_icon"
-            app:iconTint="@android:color/holo_red_dark" />
+            app:iconTint="@color/black" />
 
     </LinearLayout>
 
     <!--    Seekbar & TextViews for it-->
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="25dp"
+        android:layout_height="10dp"
         android:orientation="horizontal"
-        android:background="@color/black"
-        android:layout_margin="20dp">
+        android:layout_margin="20dp"
+        android:layout_weight="1">
 
         <TextView
             android:id="@+id/tvSeekBarStart"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:textColor="@color/white"
+            android:textColor="@color/black"
             android:textSize="15sp"
             android:text="@string/start_tv"
             android:gravity="center"/>
@@ -127,16 +119,16 @@
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:thumbTint="@color/white"
-            android:progressTint="@color/white"
-            android:backgroundTint="@color/white"
+            android:thumbTint="@android:color/holo_red_dark"
+            android:progressTint="@color/black"
+            android:backgroundTint="@color/black"
             tools:ignore="NestedWeights" />
 
         <TextView
             android:id="@+id/tvSeekBarEnd"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:textColor="@color/white"
+            android:textColor="@color/black"
             android:textSize="15sp"
             android:text="@string/end_tv"
             android:gravity="center"/>
@@ -147,8 +139,9 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:background="@color/black"
-        android:gravity="center">
+        android:layout_margin="10dp"
+        android:gravity="center"
+        android:layout_weight="1">
 
         <!--        Previous Button-->
         <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
@@ -156,8 +149,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:icon="@drawable/previous_icon"
-            android:backgroundTint="@android:color/transparent"
-            app:iconTint="@color/white"
+            android:backgroundTint="@color/white"
+            app:iconTint="@android:color/holo_red_dark"
             app:iconSize="40dp"/>
 
         <!--        Play & Pause Button-->
@@ -169,8 +162,8 @@
             app:iconSize="50dp"
             android:layout_marginHorizontal="25dp"
             app:shapeAppearanceOverlay="@style/curved"
-            android:backgroundTint="@android:color/transparent"
-            app:iconTint="@color/white"/>
+            android:backgroundTint="@color/white"
+            app:iconTint="@android:color/holo_red_dark"/>
 
         <!--        Next Button-->
         <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
@@ -178,8 +171,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:icon="@drawable/next_icon"
-            android:backgroundTint="@android:color/transparent"
-            app:iconTint="@color/white"
+            android:backgroundTint="@color/white"
+            app:iconTint="@android:color/holo_red_dark"
             app:iconSize="40dp"/>
 
     </LinearLayout>
