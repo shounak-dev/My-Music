@@ -76,7 +76,9 @@
         <activity
             android:name=".PlayerActivity"
             android:configChanges="uiMode"
-            android:exported="false"
+            android:exported="true"
+            android:launchMode="singleTask"
+            android:noHistory="true"
             android:screenOrientation="portrait"
             android:theme="@style/MyMusicTheme"
             tools:ignore="AppLinkUrlError,LockedOrientationActivity">
