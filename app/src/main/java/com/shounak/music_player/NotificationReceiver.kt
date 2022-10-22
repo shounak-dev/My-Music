@@ -10,9 +10,9 @@ import com.bumptech.glide.request.RequestOptions
 class NotificationReceiver: BroadcastReceiver() {
     override fun onReceive(context: Context?, intent: Intent?) {
         when(intent?.action){
-            ApplicationClass.PREVIOUS -> prevNextSong(increment = false, context = context!!)
+            ApplicationClass.PREVIOUS -> if(PlayerActivity.musicListPA.size > 1) prevNextSong(increment = false, context = context!!)
             ApplicationClass.PLAY -> if(PlayerActivity.isPlaying) pauseMusic() else playMusic()
-            ApplicationClass.NEXT -> prevNextSong(increment = true, context = context!!)
+            ApplicationClass.NEXT -> if(PlayerActivity.musicListPA.size > 1) prevNextSong(increment = true, context = context!!)
             ApplicationClass.EXIT -> {
                 exitApplication()
             }
