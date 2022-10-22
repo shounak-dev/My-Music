@@ -27,6 +27,8 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.core.text.bold
 import com.bumptech.glide.Glide
+import android.graphics.BitmapFactory
+import android.graphics.drawable.GradientDrawable
 import com.bumptech.glide.request.RequestOptions
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.color.MaterialColors
@@ -187,7 +189,7 @@ class PlayerActivity : AppCompatActivity(), ServiceConnection, MediaPlayer.OnCom
                         min15 = false
                         min30 = false
                         min60 = false
-                        binding.timerBtnPA.setColorFilter(ContextCompat.getColor(this, R.color.white))
+                        binding.timerBtnPA.setColorFilter(ContextCompat.getColor(this, R.color.black))
                     }
                     .setNegativeButton("No"){dialog, _ ->
                         dialog.dismiss()
@@ -226,6 +228,20 @@ class PlayerActivity : AppCompatActivity(), ServiceConnection, MediaPlayer.OnCom
         if(min15 || min30 || min60) binding.timerBtnPA.setColorFilter(ContextCompat.getColor(applicationContext, R.color.purple_500))
         if(isFavourite) binding.favouriteBtnPA.setImageResource(R.drawable.favourite_icon)
         else binding.favouriteBtnPA.setImageResource(R.drawable.favourite_empty_icon)
+        
+        val img = getImgArt(musicListPA[songPosition].path)
+        val image = if (img != null) {
+            BitmapFactory.decodeByteArray(img, 0, img.size)
+        } else {
+            BitmapFactory.decodeResource(
+                resources,
+                R.drawable.music_player_icon_splash_screen
+            )
+        }
+        val bgColor = getMainColor(image)
+        val gradient = GradientDrawable(GradientDrawable.Orientation.BOTTOM_TOP, intArrayOf(0xFFFFFF, bgColor))
+        binding.root.background = gradient
+        window?.statusBarColor = bgColor
     }
     private fun createMediaPlayer(){
         try {
