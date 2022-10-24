@@ -98,6 +98,7 @@
             android:configChanges="uiMode"
             android:exported="true"
             android:screenOrientation="portrait"
+            android:launchMode="singleTask"
             tools:ignore="LockedOrientationActivity"/>
 
         <service android:name=".MusicService" />
