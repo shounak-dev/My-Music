@@ -2,7 +2,6 @@ package com.shounak.music_player
 
 import android.annotation.SuppressLint
 import android.app.AlertDialog
-import android.content.Context
 import android.graphics.Bitmap
 import android.graphics.Color
 import android.media.MediaMetadataRetriever
@@ -76,7 +75,7 @@ fun checkPlaylist(playlist: ArrayList<Music>): ArrayList<Music>{
     return playlist
 }
 @SuppressLint("ResourceType")
-fun setDialogBtnBackground(context: Context, dialog: androidx.appcompat.app.AlertDialog){
+fun setDialogBtnBackground(context: PlayerActivity, dialog: androidx.appcompat.app.AlertDialog){
     //setting button text
     dialog.getButton(AlertDialog.BUTTON_POSITIVE)?.setTextColor(
         MaterialColors.getColor(context, R.color.purple_500, Color.WHITE)

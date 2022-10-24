@@ -23,7 +23,7 @@
             app:iconTint="@color/white"
             style="@style/Widget.AppCompat.Button.Borderless"/>
         <com.google.android.material.button.MaterialButton
-            android:id="@+id/artistBtnPA"
+            android:id="@+id/boosterBtnPA"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             app:icon="@drawable/artist_icon"

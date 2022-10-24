@@ -28,12 +28,14 @@ import androidx.core.content.ContextCompat
 import androidx.core.text.bold
 import com.bumptech.glide.Glide
 import android.graphics.BitmapFactory
+import android.media.audiofx.LoudnessEnhancer
 import android.graphics.drawable.GradientDrawable
 import com.bumptech.glide.request.RequestOptions
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.color.MaterialColors
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.shounak.music_player.databinding.ActivityPlayerBinding
+import com.shounak.music_player.databinding.AudioBoosterBinding
 import com.shounak.music_player.databinding.DetailsViewBinding
 import com.shounak.music_player.databinding.MoreFeaturesBinding
 
@@ -53,9 +55,10 @@ class PlayerActivity : AppCompatActivity(), ServiceConnection, MediaPlayer.OnCom
         var nowPlayingId: String = ""
         var isFavourite: Boolean = false
         var fIndex: Int = -1
+        lateinit var loudnessEnhancer: LoudnessEnhancer
     }
 
-    @SuppressLint("ResourceAsColor", "ResourceType")
+    @SuppressLint("ResourceAsColor", "ResourceType", "SetTextI18n")
     @RequiresApi(Build.VERSION_CODES.Q)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -63,6 +66,7 @@ class PlayerActivity : AppCompatActivity(), ServiceConnection, MediaPlayer.OnCom
         setContentView(binding.root)
 
         if(intent.data?.scheme.contentEquals("content")){
+            songPosition = 0
             val intentService = Intent(this, MusicService::class.java)
             bindService(intentService, this, BIND_AUTO_CREATE)
             startService(intentService)
@@ -158,22 +162,27 @@ class PlayerActivity : AppCompatActivity(), ServiceConnection, MediaPlayer.OnCom
                 dialog.dismiss()
                 Toast.makeText(this, "Under Maintenance", Toast.LENGTH_SHORT).show()
             }
-            bindingMF.artistBtnPA.setOnClickListener {
-                dialog.dismiss()
-                val customDialogFF = LayoutInflater.from(this).inflate(R.layout.artist_view, binding.root, false)
-                val bindingFF = DetailsViewBinding.bind(customDialogFF)
-                val dialogFF = MaterialAlertDialogBuilder(this).setView(customDialogFF)
-                    .setCancelable(false)
-                    .setBackground(ColorDrawable(0x80000000.toInt()))
-                    .setPositiveButton("Ok"){self, _ ->
+            //audio booster feature
+            bindingMF.boosterBtnPA.setOnClickListener {
+                val customDialogB = LayoutInflater.from(this).inflate(R.layout.audio_booster, binding.root, false)
+                val bindingB = AudioBoosterBinding.bind(customDialogB)
+                val dialogB = MaterialAlertDialogBuilder(this).setView(customDialogB)
+                    .setOnCancelListener { playMusic() }
+                    .setPositiveButton("OK"){self, _ ->
+                        loudnessEnhancer.setTargetGain(bindingB.verticalBar.progress * 100)
+                        playMusic()
                         self.dismiss()
                     }
+                    .setBackground(ColorDrawable(0x803700B3.toInt()))
                     .create()
-                dialogFF.show()
-                val artistText = SpannableStringBuilder().bold { append("DETAILS\n\nArtist: ") }.append(musicListPA[songPosition].artist)
-                bindingFF.detailTV.text = artistText
-                dialogFF.getButton(AlertDialog.BUTTON_POSITIVE).setTextColor(MaterialColors.getColor(baseContext, R.color.white, Color.WHITE))
-                dialogFF.getButton(AlertDialog.BUTTON_POSITIVE).setBackgroundColor(MaterialColors.getColor(baseContext, R.color.black_T, Color.BLACK))
+                dialogB.show()
+
+                bindingB.verticalBar.progress = loudnessEnhancer.targetGain.toInt()/100
+                bindingB.progressText.text = "Audio Boost\n\n${loudnessEnhancer.targetGain.toInt()/10} %"
+                bindingB.verticalBar.setOnProgressChangeListener {
+                    bindingB.progressText.text = "Audio Boost\n\n${it*10} %"
+                }
+                setDialogBtnBackground(this, dialogB)
             }
         }
         binding.timerBtnPA.setOnClickListener {
@@ -259,6 +268,9 @@ class PlayerActivity : AppCompatActivity(), ServiceConnection, MediaPlayer.OnCom
             binding.seekBarPA.max = musicService!!.mediaPlayer!!.duration
             musicService!!.mediaPlayer!!.setOnCompletionListener(this)
             nowPlayingId = musicListPA[songPosition].id
+            playMusic()
+            loudnessEnhancer = LoudnessEnhancer(musicService!!.mediaPlayer!!.audioSessionId)
+            loudnessEnhancer.enabled = true
         }catch (e: Exception){
             Toast.makeText(this, e.toString(), Toast.LENGTH_LONG).show()}
     }

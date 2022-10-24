@@ -1,11 +1,8 @@
 package com.shounak.music_player
 
 import android.annotation.SuppressLint
-import android.graphics.Color
 import android.os.Bundle
-import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
-import com.google.android.material.color.MaterialColors
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.shounak.music_player.databinding.ActivitySettingsBinding
 
@@ -38,8 +35,7 @@ class SettingsActivity : AppCompatActivity() {
                 }
             val customDialog = builder.create()
             customDialog.show()
-            customDialog.getButton(AlertDialog.BUTTON_POSITIVE).setTextColor(MaterialColors.getColor(baseContext, R.color.white, Color.WHITE))
-            customDialog.getButton(AlertDialog.BUTTON_POSITIVE).setBackgroundColor(MaterialColors.getColor(baseContext, R.color.black_T, Color.BLACK))
+
         }
     }
     private fun setVersionDetails():String{

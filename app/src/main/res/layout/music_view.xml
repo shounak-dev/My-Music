@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<com.google.android.material.card.MaterialCardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="65dp"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:padding="2dp"
-    android:background="@color/black"
+    app:cardCornerRadius="15dp"
     android:layout_marginBottom="5dp">
 
     <com.google.android.material.imageview.ShapeableImageView
@@ -12,9 +12,8 @@
         android:layout_width="60dp"
         android:layout_height="55dp"
         android:src="@mipmap/music_player_icon"
-        android:background="@color/black"
-        android:layout_marginStart="5dp"
         app:shapeAppearanceOverlay="@style/curved"
+        android:layout_marginStart="5dp"
         android:layout_marginVertical="5dp"/>
 
     <TextView
@@ -26,7 +25,7 @@
         android:gravity="center_vertical"
         android:singleLine="true"
         android:text="@string/song_name"
-        android:textColor="@color/white"
+        android:textColor="?colorOnPrimary"
         android:layout_marginStart="70dp"
         android:layout_marginEnd="50dp"/>
 
@@ -39,7 +38,6 @@
         android:layout_toStartOf="@id/songDuration"
         android:layout_marginTop="30dp"
         android:gravity="center_vertical"
-        android:textColor="@color/white"
         android:singleLine="true"
         android:layout_marginStart="70dp"
         android:layout_marginEnd="50dp"/>
@@ -47,12 +45,12 @@
     <TextView
         android:id="@+id/songDuration"
         android:layout_width="50dp"
-        android:layout_height="50dp"
+        android:layout_height="match_parent"
         android:text="@string/start_tv"
         android:layout_alignParentEnd="true"
         android:gravity="center"
         android:layout_gravity="end"
-        android:textColor="@color/white"
+        android:textColor="?colorOnPrimary"
         android:layout_marginHorizontal="5dp"/>
 
-</RelativeLayout>
+</com.google.android.material.card.MaterialCardView>

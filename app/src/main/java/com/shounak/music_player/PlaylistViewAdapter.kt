@@ -12,7 +12,7 @@ import com.bumptech.glide.request.RequestOptions
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.shounak.music_player.databinding.PlaylistViewBinding
 
-class PlaylistViewAdapter(private val context: Context, private var playlistList: ArrayList<Playlist>, val playNext: Boolean = false) : RecyclerView.Adapter<PlaylistViewAdapter.MyHolder>() {
+class PlaylistViewAdapter(private val context: Context, private var playlistList: ArrayList<Playlist>) : RecyclerView.Adapter<PlaylistViewAdapter.MyHolder>() {
 
     class MyHolder(binding: PlaylistViewBinding) : RecyclerView.ViewHolder(binding.root) {
         val image = binding.playlistImg
@@ -43,6 +43,7 @@ class PlaylistViewAdapter(private val context: Context, private var playlistList
                 }
             val customDialog = builder.create()
             customDialog.show()
+
         }
         holder.root.setOnClickListener {
             val intent = Intent(context, PlaylistDetails::class.java)

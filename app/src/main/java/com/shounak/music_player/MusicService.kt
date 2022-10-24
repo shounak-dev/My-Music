@@ -8,6 +8,7 @@ import android.graphics.BitmapFactory
 import android.media.AudioManager
 import android.media.MediaPlayer
 import android.os.*
+import android.media.audiofx.LoudnessEnhancer
 import android.support.v4.media.MediaMetadataCompat
 import android.support.v4.media.session.MediaSessionCompat
 import android.support.v4.media.session.PlaybackStateCompat
@@ -45,12 +46,12 @@ class MusicService: Service(), AudioManager.OnAudioFocusChangeListener {
 
         val prevIntent = Intent(baseContext, NotificationReceiver::class.java).setAction(ApplicationClass.PREVIOUS)
         val prevPendingIntent = PendingIntent.getBroadcast(baseContext, 0, prevIntent, flag)
-        
+
         val playIntent = Intent(baseContext, NotificationReceiver::class.java).setAction(ApplicationClass.PLAY)
         val playPendingIntent = PendingIntent.getBroadcast(baseContext, 0, playIntent, flag)
 
         val nextIntent = Intent(baseContext, NotificationReceiver::class.java).setAction(ApplicationClass.NEXT)
-        val playPendingIntent = PendingIntent.getBroadcast(baseContext, 0, playIntent, flag)
+        val nextPendingIntent = PendingIntent.getBroadcast(baseContext, 0, nextIntent, flag)
 
         val exitIntent = Intent(baseContext, NotificationReceiver::class.java).setAction(ApplicationClass.EXIT)
         val exitPendingIntent = PendingIntent.getBroadcast(baseContext, 0, exitIntent, flag)
@@ -133,6 +134,8 @@ class MusicService: Service(), AudioManager.OnAudioFocusChangeListener {
              PlayerActivity.binding.seekBarPA.progress = 0
              PlayerActivity.binding.seekBarPA.max = mediaPlayer!!.duration
              PlayerActivity.nowPlayingId = PlayerActivity.musicListPA[PlayerActivity.songPosition].id
+             PlayerActivity.loudnessEnhancer = LoudnessEnhancer(mediaPlayer!!.audioSessionId)
+             PlayerActivity.loudnessEnhancer.enabled = true
          }catch (e: Exception){return}
     }
     fun seekBarSetup(){
