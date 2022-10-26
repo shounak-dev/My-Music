@@ -25,7 +25,6 @@ class PlaylistDetails : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityPlaylistDetailsBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        PlaylistActivity.musicPlaylist.ref[currentPlaylistPos].playlist = checkPlaylist(playlist = PlaylistActivity.musicPlaylist.ref[currentPlaylistPos].playlist)
         currentPlaylistPos = intent.extras?.get("index") as Int
         try{PlaylistActivity.musicPlaylist.ref[currentPlaylistPos].playlist =
             checkPlaylist(playlist = PlaylistActivity.musicPlaylist.ref[currentPlaylistPos].playlist)}

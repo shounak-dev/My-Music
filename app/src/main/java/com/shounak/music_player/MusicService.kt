@@ -12,6 +12,7 @@ import android.media.audiofx.LoudnessEnhancer
 import android.support.v4.media.MediaMetadataCompat
 import android.support.v4.media.session.MediaSessionCompat
 import android.support.v4.media.session.PlaybackStateCompat
+import androidx.core.content.ContentProviderCompat.requireContext
 
 class MusicService: Service(), AudioManager.OnAudioFocusChangeListener {
 
@@ -34,7 +35,9 @@ class MusicService: Service(), AudioManager.OnAudioFocusChangeListener {
     @SuppressLint("UnspecifiedImmutableFlag")
     fun showNotification(playPauseBtn: Int){
 
-        val intent = Intent(baseContext, MainActivity::class.java)
+        val intent = Intent(baseContext, PlayerActivity::class.java)
+        intent.putExtra("index", PlayerActivity.songPosition)
+        intent.putExtra("class", "NowPlaying")
         
         val flag = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
             PendingIntent.FLAG_IMMUTABLE
