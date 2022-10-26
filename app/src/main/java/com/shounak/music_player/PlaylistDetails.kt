@@ -58,9 +58,9 @@ class PlaylistDetails : AppCompatActivity() {
                 }
             val customDialog = builder.create()
             customDialog.show()
-
         }
     }
+
     @SuppressLint("SetTextI18n", "NotifyDataSetChanged")
     override fun onResume() {
         super.onResume()

@@ -66,7 +66,7 @@ class PlayerActivity : AppCompatActivity(), ServiceConnection, MediaPlayer.OnCom
         setContentView(binding.root)
 
         if(intent.data?.scheme.contentEquals("content")){
-            songPosition = 0
+            songPosition = 0;
             val intentService = Intent(this, MusicService::class.java)
             bindService(intentService, this, BIND_AUTO_CREATE)
             startService(intentService)
@@ -80,10 +80,7 @@ class PlayerActivity : AppCompatActivity(), ServiceConnection, MediaPlayer.OnCom
         }
         else initializeLayout()
 
-        binding.playPauseBtnPA.setOnClickListener {
-            if (isPlaying) pauseMusic()
-            else playMusic()
-        }
+        binding.playPauseBtnPA.setOnClickListener{ if(isPlaying) pauseMusic() else playMusic() }
         binding.backBtnPA.setOnClickListener { finish() }
         binding.previousBtnPA.setOnClickListener { prevNextSong(increment = false) }
         binding.nextBtnPA.setOnClickListener { prevNextSong(increment = true) }
@@ -182,7 +179,6 @@ class PlayerActivity : AppCompatActivity(), ServiceConnection, MediaPlayer.OnCom
                 bindingB.verticalBar.setOnProgressChangeListener {
                     bindingB.progressText.text = "Audio Boost\n\n${it*10} %"
                 }
-                setDialogBtnBackground(this, dialogB)
             }
         }
         binding.timerBtnPA.setOnClickListener {
@@ -227,9 +223,34 @@ class PlayerActivity : AppCompatActivity(), ServiceConnection, MediaPlayer.OnCom
             FavouriteActivity.favouritesChanged = true
         }
     }
+    private fun initializeLayout(){
+        songPosition = intent.getIntExtra("index", 0)
+        when(intent.getStringExtra("class")){
+            "NowPlaying"->{
+                setLayout()
+                binding.tvSeekBarStart.text = formatDuration(musicService!!.mediaPlayer!!.currentPosition.toLong())
+                binding.tvSeekBarEnd.text = formatDuration(musicService!!.mediaPlayer!!.duration.toLong())
+                binding.seekBarPA.progress = musicService!!.mediaPlayer!!.currentPosition
+                binding.seekBarPA.max = musicService!!.mediaPlayer!!.duration
+                if(isPlaying) binding.playPauseBtnPA.setIconResource(R.drawable.pause_icon)
+                else binding.playPauseBtnPA.setIconResource(R.drawable.play_icon)
+            }
+            "MusicAdapterSearch"-> initServiceAndPlaylist(MainActivity.musicListSearch, shuffle = false)
+            "MusicAdapter" -> initServiceAndPlaylist(MainActivity.MusicListMA, shuffle = false)
+            "FavouriteAdapter"-> initServiceAndPlaylist(FavouriteActivity.favouriteSongs, shuffle = false)
+            "MainActivity"-> initServiceAndPlaylist(MainActivity.MusicListMA, shuffle = true)
+            "FavouriteShuffle"-> initServiceAndPlaylist(FavouriteActivity.favouriteSongs, shuffle = true)
+            "PlaylistDetailsAdapter"->
+                initServiceAndPlaylist(PlaylistActivity.musicPlaylist.ref[PlaylistDetails.currentPlaylistPos].playlist, shuffle = false)
+            "PlaylistDetailsShuffle"->
+                initServiceAndPlaylist(PlaylistActivity.musicPlaylist.ref[PlaylistDetails.currentPlaylistPos].playlist, shuffle = true)
+//            "PlayNext"->initServiceAndPlaylist(PlayNext.playNextList, shuffle = false, playNext = true)
+        }
+        if (musicService!= null && !isPlaying) playMusic()
+    }
     private fun setLayout(){
         fIndex = favouriteChecker(musicListPA[songPosition].id)
-        Glide.with(this)
+        Glide.with(applicationContext)
             .load(musicListPA[songPosition].artUri)
             .apply(RequestOptions().placeholder(R.drawable.music_player_icon_splash_screen).centerCrop())
             .into(binding.songImgPA)
@@ -237,7 +258,7 @@ class PlayerActivity : AppCompatActivity(), ServiceConnection, MediaPlayer.OnCom
         if(min15 || min30 || min60) binding.timerBtnPA.setColorFilter(ContextCompat.getColor(applicationContext, R.color.purple_500))
         if(isFavourite) binding.favouriteBtnPA.setImageResource(R.drawable.favourite_icon)
         else binding.favouriteBtnPA.setImageResource(R.drawable.favourite_empty_icon)
-        
+
         val img = getImgArt(musicListPA[songPosition].path)
         val image = if (img != null) {
             BitmapFactory.decodeByteArray(img, 0, img.size)
@@ -258,10 +279,6 @@ class PlayerActivity : AppCompatActivity(), ServiceConnection, MediaPlayer.OnCom
             musicService!!.mediaPlayer!!.reset()
             musicService!!.mediaPlayer!!.setDataSource(musicListPA[songPosition].path)
             musicService!!.mediaPlayer!!.prepare()
-            musicService!!.mediaPlayer!!.start()
-            isPlaying = true
-            binding.playPauseBtnPA.setIconResource(R.drawable.pause_icon)
-            musicService!!.showNotification(R.drawable.pause_icon)
             binding.tvSeekBarStart.text = formatDuration(musicService!!.mediaPlayer!!.currentPosition.toLong())
             binding.tvSeekBarEnd.text = formatDuration(musicService!!.mediaPlayer!!.duration.toLong())
             binding.seekBarPA.progress = 0
@@ -271,42 +288,22 @@ class PlayerActivity : AppCompatActivity(), ServiceConnection, MediaPlayer.OnCom
             playMusic()
             loudnessEnhancer = LoudnessEnhancer(musicService!!.mediaPlayer!!.audioSessionId)
             loudnessEnhancer.enabled = true
-        }catch (e: Exception){
-            Toast.makeText(this, e.toString(), Toast.LENGTH_LONG).show()}
+        }catch (e: Exception){Toast.makeText(this, e.toString(), Toast.LENGTH_LONG).show()}
     }
-    private fun initializeLayout(){
-        songPosition = intent.getIntExtra("index", 0)
-        when(intent.getStringExtra("class")){
-            "NowPlaying"->{
-                setLayout()
-                binding.tvSeekBarStart.text = formatDuration(musicService!!.mediaPlayer!!.currentPosition.toLong())
-                binding.tvSeekBarEnd.text = formatDuration(musicService!!.mediaPlayer!!.duration.toLong())
-                binding.seekBarPA.progress = musicService!!.mediaPlayer!!.currentPosition
-                binding.seekBarPA.max = musicService!!.mediaPlayer!!.duration
-                if(isPlaying) binding.playPauseBtnPA.setIconResource(R.drawable.pause_icon)
-                else binding.playPauseBtnPA.setIconResource(R.drawable.play_icon)
-            }
-            "FavouriteAdapter" -> initServiceAndPlaylist(FavouriteActivity.favouriteSongs, shuffle = false)
-            "MusicAdapterSearch" -> initServiceAndPlaylist(MainActivity.musicListSearch, shuffle = false)
-            "MusicAdapter" -> initServiceAndPlaylist(MainActivity.MusicListMA, shuffle = false)
-            "MainActivity" -> initServiceAndPlaylist(MainActivity.MusicListMA, shuffle = true)
-            "FavouriteShuffle" -> initServiceAndPlaylist(FavouriteActivity.favouriteSongs, shuffle = true)
-            "PlaylistDetailsAdapter" -> initServiceAndPlaylist(PlaylistActivity.musicPlaylist.ref[PlaylistDetails.currentPlaylistPos].playlist, shuffle = false)
-            "PlaylistDetailsShuffle" ->initServiceAndPlaylist(PlaylistActivity.musicPlaylist.ref[PlaylistDetails.currentPlaylistPos].playlist, shuffle = true)
-        }
-        if (musicService!= null && !isPlaying) playMusic()
-    }
+
     private fun playMusic(){
         isPlaying = true
-        binding.playPauseBtnPA.setIconResource(R.drawable.pause_icon)
         musicService!!.mediaPlayer!!.start()
+        binding.playPauseBtnPA.setIconResource(R.drawable.pause_icon)
         musicService!!.showNotification(R.drawable.pause_icon)
     }
+
     private fun pauseMusic(){
         isPlaying = false
-        binding.playPauseBtnPA.setIconResource(R.drawable.play_icon)
         musicService!!.mediaPlayer!!.pause()
+        binding.playPauseBtnPA.setIconResource(R.drawable.play_icon)
         musicService!!.showNotification(R.drawable.play_icon)
+
 
     }
     private fun prevNextSong(increment: Boolean){
@@ -323,6 +320,7 @@ class PlayerActivity : AppCompatActivity(), ServiceConnection, MediaPlayer.OnCom
         }
     }
 
+
     override fun onServiceConnected(name: ComponentName?, service: IBinder?) {
         if(musicService == null){
             val binder = service as MusicService.MyBinder
@@ -332,22 +330,34 @@ class PlayerActivity : AppCompatActivity(), ServiceConnection, MediaPlayer.OnCom
         }
         createMediaPlayer()
         musicService!!.seekBarSetup()
+
+
     }
 
     override fun onServiceDisconnected(name: ComponentName?) {
         musicService = null
     }
 
-    override fun onCompletion(p0: MediaPlayer?) {
+    override fun onCompletion(mp: MediaPlayer?) {
         setSongPosition(increment = true)
         createMediaPlayer()
-        try {setLayout()}catch (e:Exception){return}
+        setLayout()
+
+        //for refreshing now playing image & text on song completion
+        NowPlaying.binding.songNameNP.isSelected = true
+        Glide.with(applicationContext)
+            .load(musicListPA[songPosition].artUri)
+            .apply(RequestOptions().placeholder(R.drawable.music_player_icon_splash_screen).centerCrop())
+            .into(NowPlaying.binding.songImgNP)
+        NowPlaying.binding.songNameNP.text = musicListPA[songPosition].title
     }
+
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         if(requestCode == 13 || resultCode == RESULT_OK)
             return
     }
+
     private fun showBottomSheetDialog(){
         val dialog = BottomSheetDialog(this@PlayerActivity)
         dialog.setContentView(R.layout.bottom_sheet_dialog)
@@ -394,6 +404,7 @@ class PlayerActivity : AppCompatActivity(), ServiceConnection, MediaPlayer.OnCom
             cursor?.close()
         }
     }
+
     override fun onDestroy() {
         super.onDestroy()
         if(musicListPA[songPosition].id == "Unknown" && !isPlaying) exitApplication()
@@ -406,5 +417,6 @@ class PlayerActivity : AppCompatActivity(), ServiceConnection, MediaPlayer.OnCom
         musicListPA.addAll(playlist)
         if(shuffle) musicListPA.shuffle()
         setLayout()
+//        if(!playNext) PlayNext.playNextList = ArrayList()
     }
 }

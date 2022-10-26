@@ -11,6 +11,8 @@ import android.os.Bundle
 import android.provider.MediaStore
 import android.view.Menu
 import android.view.MenuItem
+import android.view.View
+import android.widget.LinearLayout
 import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.ActionBarDrawerToggle
@@ -33,10 +35,10 @@ class MainActivity : AppCompatActivity() {
     private lateinit var musicAdapter: MusicAdapter
 
     companion object {
-        lateinit var MusicListMA: ArrayList<Music>
-        lateinit var musicListSearch: ArrayList<Music>
-        var themeIndex: Int = 0
+        lateinit var MusicListMA : ArrayList<Music>
+        lateinit var musicListSearch : ArrayList<Music>
         var search: Boolean = false
+        var themeIndex: Int = 0
         var sortOrder: Int = 0
         val sortingList = arrayOf(MediaStore.Audio.Media.DATE_ADDED + " DESC", MediaStore.Audio.Media.TITLE,
             MediaStore.Audio.Media.SIZE + " DESC")
@@ -60,7 +62,7 @@ class MainActivity : AppCompatActivity() {
             Toast.makeText(this, "Black Theme Works Best in Dark Mode!!", Toast.LENGTH_LONG).show()
 
         if(requestRuntimePermission()){
-            loadMusics()
+            initializeLayout()
             //for retrieving favourites data using shared preferences
             FavouriteActivity.favouriteSongs = ArrayList()
             val editor = getSharedPreferences("FAVOURITES", MODE_PRIVATE)
@@ -108,56 +110,40 @@ class MainActivity : AppCompatActivity() {
             }
             true
         }
-        binding.musicSwipeRefresh.setOnRefreshListener { loadMusics() }
+        binding.musicSwipeRefresh.setOnRefreshListener { initializeLayout() }
     }
 
     //For requesting permission
-    private fun requestRuntimePermission(): Boolean {
-        if (ActivityCompat.checkSelfPermission(
-                this,
-                android.Manifest.permission.WRITE_EXTERNAL_STORAGE
-            )
-            != PackageManager.PERMISSION_GRANTED
-        ) {
-            ActivityCompat.requestPermissions(
-                this,
-                arrayOf(android.Manifest.permission.WRITE_EXTERNAL_STORAGE),
-                13
-            )
+    private fun requestRuntimePermission() :Boolean{
+        if(ActivityCompat.checkSelfPermission(this, android.Manifest.permission.WRITE_EXTERNAL_STORAGE)
+            != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(this, arrayOf(android.Manifest.permission.WRITE_EXTERNAL_STORAGE), 13)
             return false
         }
         return true
     }
 
     @RequiresApi(Build.VERSION_CODES.R)
-    override fun onRequestPermissionsResult(
-        requestCode: Int,
-        permissions: Array<out String>,
-        grantResults: IntArray
-    ) {
+    override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
-        if (requestCode == 13) {
-            if (grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                Toast.makeText(this, "Permission Granted", Toast.LENGTH_SHORT).show()
-                loadMusics()
-            } else
-                ActivityCompat.requestPermissions(
-                    this,
-                    arrayOf(android.Manifest.permission.WRITE_EXTERNAL_STORAGE),
-                    13
-                )
+        if(requestCode == 13){
+            if(grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED){
+                Toast.makeText(this, "Permission Granted",Toast.LENGTH_SHORT).show()
+                initializeLayout()
+            }
+            else
+                ActivityCompat.requestPermissions(this, arrayOf(android.Manifest.permission.WRITE_EXTERNAL_STORAGE), 13)
         }
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        if (toggle.onOptionsItemSelected(item))
+        if(toggle.onOptionsItemSelected(item))
             return true
         return super.onOptionsItemSelected(item)
     }
-
     @RequiresApi(Build.VERSION_CODES.R)
     @SuppressLint("SetTextI18n")
-    private fun loadMusics() {
+    private fun initializeLayout(){
         search = false
         val sortEditor = getSharedPreferences("SORTING", MODE_PRIVATE)
         sortOrder = sortEditor.getInt("sortOrder", 0)
@@ -167,30 +153,20 @@ class MainActivity : AppCompatActivity() {
         binding.musicRV.layoutManager = LinearLayoutManager(this@MainActivity)
         musicAdapter = MusicAdapter(this@MainActivity, MusicListMA)
         binding.musicRV.adapter = musicAdapter
-        binding.musicSwipeRefresh.isRefreshing = false
     }
 
     @SuppressLint("Recycle", "Range")
     @RequiresApi(Build.VERSION_CODES.R)
-    private fun getAllAudio(): ArrayList<Music> {
+    private fun getAllAudio(): ArrayList<Music>{
         val tempList = ArrayList<Music>()
-        val selection = MediaStore.Audio.Media.IS_MUSIC + " != 0"
-        val projection = arrayOf(
-            MediaStore.Audio.Media._ID,
-            MediaStore.Audio.Media.TITLE,
-            MediaStore.Audio.Media.ALBUM,
-            MediaStore.Audio.Media.ARTIST,
-            MediaStore.Audio.Media.DURATION,
-            MediaStore.Audio.Media.DATE_ADDED,
-            MediaStore.Audio.Media.DATA,
-            MediaStore.Audio.Media.ALBUM_ID
-        )
-        val cursor = this.contentResolver.query(
-            MediaStore.Audio.Media.EXTERNAL_CONTENT_URI, projection, selection, null,
-            sortingList[sortOrder], null
-        )
-        if (cursor != null) {
-            if (cursor.moveToFirst())
+        val selection = MediaStore.Audio.Media.IS_MUSIC +  " != 0"
+        val projection = arrayOf(MediaStore.Audio.Media._ID,MediaStore.Audio.Media.TITLE,MediaStore.Audio.Media.ALBUM,
+            MediaStore.Audio.Media.ARTIST,MediaStore.Audio.Media.DURATION,MediaStore.Audio.Media.DATE_ADDED,
+            MediaStore.Audio.Media.DATA, MediaStore.Audio.Media.ALBUM_ID)
+        val cursor = this.contentResolver.query(MediaStore.Audio.Media.EXTERNAL_CONTENT_URI, projection,selection,null,
+            sortingList[sortOrder], null)
+        if(cursor != null){
+            if(cursor.moveToFirst())
                 do {
                     val titleC = cursor.getString(cursor.getColumnIndex(MediaStore.Audio.Media.TITLE))?:"Unknown"
                     val idC = cursor.getString(cursor.getColumnIndex(MediaStore.Audio.Media._ID))?:"Unknown"
@@ -206,7 +182,7 @@ class MainActivity : AppCompatActivity() {
                     val file = File(music.path)
                     if(file.exists())
                         tempList.add(music)
-                } while (cursor.moveToNext())
+                }while (cursor.moveToNext())
             cursor.close()
         }
         return tempList
@@ -214,12 +190,13 @@ class MainActivity : AppCompatActivity() {
 
     override fun onDestroy() {
         super.onDestroy()
-        if (!PlayerActivity.isPlaying && PlayerActivity.musicService != null) {
+        if(!PlayerActivity.isPlaying && PlayerActivity.musicService != null){
             exitApplication()
         }
     }
+
     @RequiresApi(Build.VERSION_CODES.R)
-    override fun onResume(){
+    override fun onResume() {
         super.onResume()
         //for storing favourites data using shared preferences
         val editor = getSharedPreferences("FAVOURITES", MODE_PRIVATE).edit()
@@ -236,11 +213,13 @@ class MainActivity : AppCompatActivity() {
             MusicListMA = getAllAudio()
             musicAdapter.updateMusicList(MusicListMA)
         }
+        if(PlayerActivity.musicService != null) binding.nowPlaying.visibility = View.VISIBLE
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         menuInflater.inflate(R.menu.search_view_menu, menu)
         //for setting gradient
+//        findViewById<LinearLayout>(R.id.linearLayoutNav)?.setBackgroundResource(currentGradient[themeIndex])
         val searchView = menu?.findItem(R.id.searchView)?.actionView as SearchView
         searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener{
             override fun onQueryTextSubmit(query: String?): Boolean = true

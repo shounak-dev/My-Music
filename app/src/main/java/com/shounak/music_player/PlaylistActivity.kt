@@ -53,6 +53,7 @@ class PlaylistActivity : AppCompatActivity() {
                 dialog.dismiss()
             }.create()
         dialog.show()
+
     }
     private fun addPlaylist(name: String, createdBy: String){
         var playlistExists = false
@@ -75,6 +76,7 @@ class PlaylistActivity : AppCompatActivity() {
             adapter.refreshPlaylist()
         }
     }
+
     @SuppressLint("NotifyDataSetChanged")
     override fun onResume() {
         super.onResume()

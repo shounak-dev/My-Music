@@ -2,6 +2,7 @@ package com.shounak.music_player
 
 import android.annotation.SuppressLint
 import android.app.AlertDialog
+import android.content.Context
 import android.graphics.Bitmap
 import android.graphics.Color
 import android.media.MediaMetadataRetriever
@@ -49,13 +50,14 @@ fun setSongPosition(increment: Boolean){
     }
 }
 fun exitApplication(){
-    if (PlayerActivity.musicService != null){
+    if(PlayerActivity.musicService != null){
         PlayerActivity.musicService!!.audioManager.abandonAudioFocus(PlayerActivity.musicService)
         PlayerActivity.musicService!!.stopForeground(true)
         PlayerActivity.musicService!!.mediaPlayer!!.release()
         PlayerActivity.musicService = null}
     exitProcess(1)
 }
+
 fun favouriteChecker(id: String): Int{
     PlayerActivity.isFavourite = false
     FavouriteActivity.favouriteSongs.forEachIndexed { index, music ->
@@ -74,24 +76,25 @@ fun checkPlaylist(playlist: ArrayList<Music>): ArrayList<Music>{
     }
     return playlist
 }
-@SuppressLint("ResourceType")
-fun setDialogBtnBackground(context: PlayerActivity, dialog: androidx.appcompat.app.AlertDialog){
+
+fun setDialogBtnBackground(context: Context, dialog: AlertDialog){
     //setting button text
-    dialog.getButton(AlertDialog.BUTTON_POSITIVE)?.setTextColor(
-        MaterialColors.getColor(context, R.color.purple_500, Color.WHITE)
+    dialog.getButton(android.app.AlertDialog.BUTTON_POSITIVE)?.setTextColor(
+        MaterialColors.getColor(context, R.attr.dialogTextColor, Color.WHITE)
     )
-    dialog.getButton(AlertDialog.BUTTON_NEGATIVE)?.setTextColor(
-        MaterialColors.getColor(context, R.color.purple_500, Color.WHITE)
+    dialog.getButton(android.app.AlertDialog.BUTTON_NEGATIVE)?.setTextColor(
+        MaterialColors.getColor(context, R.attr.dialogTextColor, Color.WHITE)
     )
 
     //setting button background
-    dialog.getButton(AlertDialog.BUTTON_POSITIVE)?.setBackgroundColor(
-        MaterialColors.getColor(context, R.color.purple_500, Color.RED)
+    dialog.getButton(android.app.AlertDialog.BUTTON_POSITIVE)?.setBackgroundColor(
+        MaterialColors.getColor(context, R.attr.dialogBtnBackground, Color.RED)
     )
-    dialog.getButton(AlertDialog.BUTTON_NEGATIVE)?.setBackgroundColor(
-        MaterialColors.getColor(context, R.color.purple_500, Color.RED)
+    dialog.getButton(android.app.AlertDialog.BUTTON_NEGATIVE)?.setBackgroundColor(
+        MaterialColors.getColor(context, R.attr.dialogBtnBackground, Color.RED)
     )
 }
+
 fun getMainColor(img: Bitmap): Int {
     val newImg = Bitmap.createScaledBitmap(img, 1,1 , true)
     val color = newImg.getPixel(0, 0)
