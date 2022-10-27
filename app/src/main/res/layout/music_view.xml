@@ -3,6 +3,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="65dp"
+    android:layout_marginTop="7dp"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     app:cardCornerRadius="15dp"
     android:layout_marginBottom="5dp">
@@ -13,12 +14,15 @@
         android:layout_height="55dp"
         android:src="@mipmap/music_player_icon"
         app:shapeAppearanceOverlay="@style/curved"
-        android:layout_marginStart="7dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="7dp"
         android:layout_marginVertical="5dp"/>
 
     <TextView
         android:id="@+id/songNameMV"
         android:layout_width="wrap_content"
+        android:paddingStart="10dp"
+        android:paddingEnd="10dp"
         android:layout_height="45dp"
         android:layout_toStartOf="@id/songDuration"
         android:layout_toEndOf="@id/imageMV"
@@ -30,6 +34,8 @@
         android:layout_marginEnd="50dp"/>
 
     <TextView
+        android:paddingStart="10dp"
+        android:paddingEnd="10dp"
         android:id="@+id/songAlbumMV"
         android:layout_width="wrap_content"
         android:layout_height="35dp"
