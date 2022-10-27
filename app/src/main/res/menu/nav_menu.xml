@@ -13,13 +13,13 @@
         android:title="@string/shuffle_btn"
         android:icon="@drawable/shuffle_icon"/>
 
-    <item android:id="@+id/navFeedback"
-        android:title="@string/feedback"
-        android:icon="@drawable/feedback_icon"/>
-
     <item android:id="@+id/navSettings"
         android:title="@string/settings"
         android:icon="@drawable/settings_icon"/>
+
+    <item android:id="@+id/navFeedback"
+        android:title="@string/feedback"
+        android:icon="@drawable/feedback_icon"/>
 
     <item android:id="@+id/navAbout"
         android:title="@string/about"
