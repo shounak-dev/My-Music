@@ -8,7 +8,7 @@
     android:background="@color/black">
 
     <LinearLayout
-        android:id="@+id/min_30"
+        android:id="@+id/min_15"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         tools:ignore="UseCompoundDrawables"
@@ -18,8 +18,30 @@
             android:layout_height="24dp"
             android:src="@drawable/timer_icon"
             android:layout_margin="8dp"
-            android:contentDescription="@string/min_30"
+            android:contentDescription="@string/min_15"
             app:tint="@color/white" />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="@string/min_15"
+            android:textSize="18sp"
+            android:textColor="@color/white"
+            android:padding="8dp"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/min_30"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:ignore="UseCompoundDrawables"
+        android:layout_margin="10dp">
+        <ImageView
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:src="@drawable/timer_icon"
+            app:tint="@color/white"
+            android:layout_margin="8dp"
+            android:contentDescription="@string/min_30" />
         <TextView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -46,28 +68,6 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:text="@string/min_60"
-            android:textSize="18sp"
-            android:textColor="@color/white"
-            android:padding="8dp"/>
-    </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/min_120"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        tools:ignore="UseCompoundDrawables"
-        android:layout_margin="10dp">
-        <ImageView
-            android:layout_width="24dp"
-            android:layout_height="24dp"
-            android:src="@drawable/timer_icon"
-            app:tint="@color/white"
-            android:layout_margin="8dp"
-            android:contentDescription="@string/min_120" />
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:text="@string/min_120"
             android:textSize="18sp"
             android:textColor="@color/white"
             android:padding="8dp"/>
