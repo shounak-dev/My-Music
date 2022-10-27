@@ -8,7 +8,7 @@
     <com.lukelorusso.verticalseekbar.VerticalSeekBar
         android:id="@+id/verticalBar"
         android:layout_width="50dp"
-        android:layout_height="200dp"
+        android:layout_height="250dp"
         app:vsb_bar_corner_radius="15dp"
         android:layout_margin="16dp"
         app:vsb_progress="0"
@@ -19,11 +19,11 @@
 
     <TextView
         android:id="@+id/progressText"
-        android:layout_width="250dp"
+        android:layout_width="270dp"
         android:layout_height="match_parent"
-        android:text="@string/world_of_music"
         android:gravity="center"
-        android:textSize="18sp"
-        android:textColor="@color/white"/>
+        android:text="@string/world_of_music"
+        android:textColor="@color/cool_blue"
+        android:textSize="18sp" />
 
 </LinearLayout>
