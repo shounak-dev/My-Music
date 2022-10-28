@@ -12,7 +12,6 @@ import android.provider.MediaStore
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
-import android.widget.LinearLayout
 import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.ActionBarDrawerToggle
@@ -110,7 +109,12 @@ class MainActivity : AppCompatActivity() {
             }
             true
         }
-        binding.musicSwipeRefresh.setOnRefreshListener { initializeLayout() }
+        binding.musicSwipeRefresh.setOnRefreshListener {
+            MusicListMA = getAllAudio()
+            musicAdapter.updateMusicList(MusicListMA)
+
+            binding.musicSwipeRefresh.isRefreshing = false
+        }
     }
 
     //For requesting permission
