@@ -115,14 +115,15 @@
             android:text="@string/start_tv"
             android:gravity="center"/>
 
-        <androidx.appcompat.widget.AppCompatSeekBar
+        <SeekBar
             android:id="@+id/seekBarPA"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:thumbTint="@android:color/holo_red_dark"
-            android:progressTint="@color/black"
-            android:backgroundTint="@color/black"
+            android:maxHeight="6dp"
+            android:minHeight="6dp"
+            android:progressDrawable="@drawable/seekbar_bg"
+            android:thumb="@drawable/seekbar_thumb"
             tools:ignore="NestedWeights" />
 
         <TextView
