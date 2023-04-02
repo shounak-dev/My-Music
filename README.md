@@ -47,11 +47,11 @@ Some features that are included in the app are:
 <hr>
 
 <p align="center">
-  <img src=https://github.com/shounak-dev/My-Music/blob/7d1d9cd98adc44ceed50907f13236d16077b9234/Assets/1.jpg height= 800 width = 1000 />
+  <img src=https://github.com/shounak-dev/My-Music/blob/7d1d9cd98adc44ceed50907f13236d16077b9234/Assets/1.jpg width = 1000 />
 </p>
 
 <p align="center">
-  <img src=https://github.com/shounak-dev/My-Music/blob/7d1d9cd98adc44ceed50907f13236d16077b9234/Assets/2.jpg height= 800 width = 1000 />
+  <img src=https://github.com/shounak-dev/My-Music/blob/7d1d9cd98adc44ceed50907f13236d16077b9234/Assets/2.jpg width = 1000 />
 </p>
 
 ## License 
