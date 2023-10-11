@@ -1,54 +1,94 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".FeedbackActivity"
-    android:orientation="vertical"
-    android:background="@color/black">
+    android:background="@color/black"
+    tools:context=".FeedbackActivity">
 
-    <com.google.android.material.textfield.TextInputEditText
-        android:id="@+id/topicFA"
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:textColor="@color/black"
-        android:layout_margin="16dp"
-        android:layout_height="80dp"
-        android:background="@color/white"
-        android:hint="@string/topic_feedback"
-        android:gravity="center|start"
-        android:inputType="textEmailSubject"
-        android:paddingHorizontal="16dp"/>
+        android:layout_height="match_parent"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="90dp"
+        android:layout_marginEnd="8dp"
+        android:background="@drawable/category_back"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/feed_txt">
 
-    <com.google.android.material.textfield.TextInputEditText
-        android:id="@+id/emailFA"
-        android:layout_width="match_parent"
-        android:layout_height="80dp"
-        android:textColor="@color/black"
-        android:background="@color/white"
-        android:layout_margin="16dp"
-        android:hint="@string/email_feedback"
-        android:gravity="center|start"
-        android:inputType="textEmailAddress"
-        android:paddingHorizontal="16dp"/>
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/sendFA"
+            android:layout_width="152dp"
+            android:layout_height="48dp"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/btn_share"
+            android:text="Send"
+            android:textColor="@color/white"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/feedbackMsgFA" />
 
-    <com.google.android.material.textfield.TextInputEditText
-        android:id="@+id/feedbackMsgFA"
-        android:layout_width="match_parent"
-        android:layout_height="250dp"
-        android:textColor="@color/black"
-        android:background="@color/white"
-        android:layout_margin="16dp"
-        android:hint="@string/feedback"
-        android:gravity="center|start"
-        android:paddingHorizontal="16dp"/>
-    <Button
-        android:id="@+id/sendFA"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:backgroundTint="@android:color/holo_red_dark"
-        android:text="@string/send"
-        android:layout_gravity="center"
-        android:textColor="@color/white"
-        android:paddingHorizontal="16dp"/>
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/emailFA"
+            android:layout_width="match_parent"
+            android:layout_height="80dp"
+            android:layout_margin="16dp"
+            android:background="@drawable/curved_btn"
+            android:gravity="center|start"
+            android:hint="@string/email_feedback"
+            android:inputType="textEmailAddress"
+            android:paddingHorizontal="16dp"
+            android:textColor="@color/black"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/topicFA" />
 
-</LinearLayout>
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/feedbackMsgFA"
+            android:layout_width="match_parent"
+            android:layout_height="185dp"
+            android:layout_margin="16dp"
+            android:background="@drawable/curved_btn"
+            android:gravity="center|start"
+            android:hint="@string/feedback"
+            android:paddingHorizontal="16dp"
+            android:textColor="@color/black"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/emailFA" />
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/topicFA"
+            android:layout_width="match_parent"
+            android:layout_height="80dp"
+            android:layout_margin="16dp"
+            android:background="@drawable/curved_btn"
+            android:gravity="center|start"
+            android:hint="@string/topic_feedback"
+            android:inputType="textEmailSubject"
+            android:paddingHorizontal="16dp"
+            android:textColor="@color/black"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:layout_editor_absoluteX="16dp" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <TextView
+        android:id="@+id/feed_txt"
+        android:layout_width="187dp"
+        android:layout_height="37dp"
+        android:text="FEEDBACK!!"
+        android:textColor="#FBFBFB"
+        android:textSize="34sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.022" />
+</androidx.constraintlayout.widget.ConstraintLayout>
