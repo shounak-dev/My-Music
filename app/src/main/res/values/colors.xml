@@ -16,4 +16,7 @@
     <color name="black_T">#80000000</color>
     <color name="gray">#808080</color>
 
+    <color name="button_default_color">#FF4081</color>
+    <color name="button_pressed_color">#E91E63</color>
+    <color name="button_focused_color">#FF80AB</color>
 </resources>
