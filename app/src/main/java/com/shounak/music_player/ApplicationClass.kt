@@ -13,17 +13,16 @@ class ApplicationClass: Application() {
         const val PREVIOUS = "previous"
         const val EXIT = "exit"
     }
+
     override fun onCreate() {
         super.onCreate()
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O){
-            val notificationChannel = NotificationChannel(CHANNEL_ID, "Now Playing Song", NotificationManager.IMPORTANCE_HIGH)
-            notificationChannel.description = "This is a important channel for showing song!!"
-            //for lockscreen ->
+        val notificationChannel = NotificationChannel(CHANNEL_ID, "Now Playing Song", NotificationManager.IMPORTANCE_HIGH)
+        notificationChannel.description = "This is a important channel for showing song!!"
+        //for lockscreen ->
 //            notificationChannel.importance = NotificationManager.IMPORTANCE_HIGH
 //            notificationChannel.lockscreenVisibility = Notification.VISIBILITY_PUBLIC
 
-            val notificationManager = getSystemService(NOTIFICATION_SERVICE) as NotificationManager
-            notificationManager.createNotificationChannel(notificationChannel)
-        }
+        val notificationManager = getSystemService(NOTIFICATION_SERVICE) as NotificationManager
+        notificationManager.createNotificationChannel(notificationChannel)
     }
 }
