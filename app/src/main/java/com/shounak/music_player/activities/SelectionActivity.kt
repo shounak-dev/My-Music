@@ -23,14 +23,14 @@ class SelectionActivity : AppCompatActivity() {
         binding.selectionRV.adapter = adapter
         binding.backBtnSA.setOnClickListener { finish() }
         //for search View
-        binding.searchViewSA.setOnQueryTextListener(object : SearchView.OnQueryTextListener{
+        binding.searchViewSA.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String?): Boolean = true
             override fun onQueryTextChange(newText: String?): Boolean {
                 MainActivity.musicListSearch = ArrayList()
-                if(newText != null){
+                if (newText != null) {
                     val userInput = newText.lowercase()
                     for (song in MainActivity.MusicListMA)
-                        if(song.title.lowercase().contains(userInput))
+                        if (song.title.lowercase().contains(userInput))
                             MainActivity.musicListSearch.add(song)
                     MainActivity.search = true
                     adapter.updateMusicList(searchList = MainActivity.musicListSearch)
@@ -43,9 +43,9 @@ class SelectionActivity : AppCompatActivity() {
     override fun onResume() {
         super.onResume()
         //for black theme checking
-        if(MainActivity.themeIndex == 4)
-        {
-            binding.searchViewSA.backgroundTintList = ContextCompat.getColorStateList(this, R.color.white)
+        if (MainActivity.themeIndex == 4) {
+            binding.searchViewSA.backgroundTintList =
+                ContextCompat.getColorStateList(this, R.color.white)
         }
     }
 }

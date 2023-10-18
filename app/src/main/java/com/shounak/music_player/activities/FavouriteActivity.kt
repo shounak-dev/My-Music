@@ -13,7 +13,7 @@ class FavouriteActivity : AppCompatActivity() {
     private lateinit var binding: ActivityFavouriteBinding
     private lateinit var adapter: FavouriteAdapter
 
-    companion object{
+    companion object {
         var favouriteSongs: ArrayList<Music> = ArrayList()
         var favouritesChanged: Boolean = false
     }
@@ -34,7 +34,7 @@ class FavouriteActivity : AppCompatActivity() {
 
         if (favouriteSongs.size < 1) binding.shuffleBtnFA.visibility = View.INVISIBLE
 
-        if(favouriteSongs.isNotEmpty()) binding.instructionFV.visibility = View.GONE
+        if (favouriteSongs.isNotEmpty()) binding.instructionFV.visibility = View.GONE
 
         binding.shuffleBtnFA.setOnClickListener {
             val intent = Intent(this, PlayerActivity::class.java)
@@ -43,10 +43,11 @@ class FavouriteActivity : AppCompatActivity() {
             startActivity(intent)
         }
     }
+
     @SuppressLint("NotifyDataSetChanged")
     override fun onResume() {
         super.onResume()
-        if(favouritesChanged) {
+        if (favouritesChanged) {
             adapter.updateFavourites(favouriteSongs)
             favouritesChanged = false
         }
