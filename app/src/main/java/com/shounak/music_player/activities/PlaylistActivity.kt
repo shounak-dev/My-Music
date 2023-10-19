@@ -18,7 +18,7 @@ class PlaylistActivity : AppCompatActivity() {
     private lateinit var binding: ActivityPlaylistBinding
     private lateinit var adapter: PlaylistViewAdapter
 
-    companion object{
+    companion object {
         var musicPlaylist: MusicPlaylist = MusicPlaylist()
     }
 
@@ -34,20 +34,21 @@ class PlaylistActivity : AppCompatActivity() {
         binding.backBtnPLA.setOnClickListener { finish() }
         binding.addPlaylistBtn.setOnClickListener { customAlertDialog() }
 
-        if(musicPlaylist.ref.isNotEmpty()) binding.instructionPA.visibility = View.GONE
+        if (musicPlaylist.ref.isNotEmpty()) binding.instructionPA.visibility = View.GONE
     }
-    private fun customAlertDialog(){
-        val customDialog = LayoutInflater.from(this@PlaylistActivity).inflate(R.layout.add_playlist_dialog, binding.root, false)
+
+    private fun customAlertDialog() {
+        val customDialog = LayoutInflater.from(this@PlaylistActivity)
+            .inflate(R.layout.add_playlist_dialog, binding.root, false)
         val binder = AddPlaylistDialogBinding.bind(customDialog)
         val builder = MaterialAlertDialogBuilder(this)
         val dialog = builder.setView(customDialog)
             .setTitle("Playlist Details")
-            .setPositiveButton("ADD"){ dialog, _ ->
+            .setPositiveButton("ADD") { dialog, _ ->
                 val playlistName = binder.playlistName.text
                 val createdBy = binder.yourName.text
-                if(playlistName != null && createdBy != null)
-                    if(playlistName.isNotEmpty() && createdBy.isNotEmpty())
-                    {
+                if (playlistName != null && createdBy != null)
+                    if (playlistName.isNotEmpty() && createdBy.isNotEmpty()) {
                         addPlaylist(playlistName.toString(), createdBy.toString())
                     }
                 dialog.dismiss()
@@ -55,15 +56,16 @@ class PlaylistActivity : AppCompatActivity() {
         dialog.show()
 
     }
-    private fun addPlaylist(name: String, createdBy: String){
+
+    private fun addPlaylist(name: String, createdBy: String) {
         var playlistExists = false
-        for(i in musicPlaylist.ref) {
-            if (name == i.name){
+        for (i in musicPlaylist.ref) {
+            if (name == i.name) {
                 playlistExists = true
                 break
             }
         }
-        if(playlistExists) Toast.makeText(this, "Playlist Exist!!", Toast.LENGTH_SHORT).show()
+        if (playlistExists) Toast.makeText(this, "Playlist Exist!!", Toast.LENGTH_SHORT).show()
         else {
             val tempPlaylist = Playlist()
             tempPlaylist.name = name

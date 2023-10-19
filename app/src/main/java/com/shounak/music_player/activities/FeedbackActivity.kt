@@ -27,14 +27,19 @@ class FeedbackActivity : AppCompatActivity() {
             val sender = binding.emailFA.text.toString()
             val subject = binding.topicFA.text.toString()
 
-            if(feedbackMsg.isNotEmpty() && subject.isNotEmpty()){
+            if (feedbackMsg.isNotEmpty() && subject.isNotEmpty()) {
                 sendFeedback(sender, subject, feedbackMsg, this)
-            }
-            else Toast.makeText(this, "Please, fill out the required fields", Toast.LENGTH_SHORT).show()
+            } else Toast.makeText(this, "Please, fill out the required fields", Toast.LENGTH_SHORT)
+                .show()
         }
     }
 
-    private fun sendFeedback(sender: String, subject: String, message: String, mContext: android.content.Context) {
+    private fun sendFeedback(
+        sender: String,
+        subject: String,
+        message: String,
+        mContext: android.content.Context
+    ) {
         // Send a POST request to Github to launch the action
         // https://docs.github.com/en/rest/reference/actions#create-a-workflow-dispatch-event
         // Parameters:
@@ -51,14 +56,14 @@ class FeedbackActivity : AppCompatActivity() {
         val jsonBody = JSONObject()
         jsonBody.put("event_type", "webhook-run")
         val data = JSONObject()
-        data.put("sender",sender)
-        data.put("subject",subject)
-        data.put("message",message)
+        data.put("sender", sender)
+        data.put("subject", subject)
+        data.put("message", message)
         jsonBody.put("client_payload", data)
 
-        val req = object: JsonObjectRequest(Request.Method.POST, url, jsonBody, { _ ->
+        val req = object : JsonObjectRequest(Request.Method.POST, url, jsonBody, { _ ->
             Toast.makeText(mContext, "Feedback Sent Successfully", Toast.LENGTH_SHORT).show()
-        }, {error ->
+        }, { error ->
             val response = error.networkResponse
             if (response?.data != null) {
                 val json = String(response.data)

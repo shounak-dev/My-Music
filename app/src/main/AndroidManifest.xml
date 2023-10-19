@@ -20,6 +20,7 @@
         android:supportsRtl="true"
         android:theme="@style/MyMusicTheme"
         tools:ignore="AllowBackup">
+
         <activity
             android:name=".SplashActivity"
             android:exported="true">
